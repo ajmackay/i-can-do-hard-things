@@ -9,8 +9,6 @@ website:
       - blog.qmd
       - icon: github
         href: https://github.com/ajmackay
-      - icon: twitter
-        href: https://twitter.com
 format:
   html:
     theme: cosmo
