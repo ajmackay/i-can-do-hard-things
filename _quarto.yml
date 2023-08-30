@@ -1,0 +1,20 @@
+project:
+  type: website
+
+website:
+  title: "I Can Do Hard Things"
+  description: "Blog by Aaron Mackay where I try and do things that smart people do"
+  navbar:
+    right:
+      - blog.qmd
+      - icon: github
+        href: https://github.com/ajmackay
+      - icon: twitter
+        href: https://twitter.com
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+
+editor: visual
+
