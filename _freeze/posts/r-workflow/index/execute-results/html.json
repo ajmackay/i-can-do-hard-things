@@ -1,0 +1,14 @@
+{
+  "hash": "0ad71b3f7fcad323f1cb45aebffbd900",
+  "result": {
+    "markdown": "---\ntitle: \"WoRkflow\"\nauthor: \"Aaron Mackay\"\ndate: \"2023-08-30\"\ncategories: [workflow]\nimage: \"image.jpg\"\n---\n\n\nGetting the right workflow in R is hard.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

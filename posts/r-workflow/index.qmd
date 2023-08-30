@@ -1,0 +1,13 @@
+---
+title: "WoRkflow"
+author: "Aaron Mackay"
+date: "2023-08-30"
+categories: [workflow]
+image: "image.jpg"
+---
+
+Getting the right workflow in R is hard.
+
+```{r}
+1 + 1
+```
