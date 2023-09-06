@@ -1,0 +1,10 @@
+---
+title: "Highlighting In ggplot"
+author: "Az"
+date: "2023-09-05"
+categories: [ggplot, dataviz]
+---
+
+Highlighting specific columns in ggplot is a useful
+
+Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.
