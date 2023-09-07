@@ -6,3 +6,8 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: true
+
+# Author of all blog posts
+author: 'Az'
+
+page-layout: article
