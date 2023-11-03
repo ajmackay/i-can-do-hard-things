@@ -1,0 +1,28 @@
+---
+title: "Super Helpful Very Little Tips and Tricks"
+author: "Az"
+date: "2023-09-05"
+categories: [ggplot, dataviz]
+---
+
+# Paste Windows File Directory
+
+Something about how annoying the backslashes are etc.
+
+```{r back-slash}
+readClipboard() %>% str_replace_all("\\\\", "/")
+
+paste.path = function() {
+  raw_dir <- readClipboard()
+
+  if(is.null(raw_dir)) {
+    stop("Oops, your clipboard appears to be empty")
+  }
+
+  if(!str_detect(raw_dir, "\\\\")) {
+    stop(stringr::str_glue("Hmm it seems you haven't provided a windows file directory path: \n{format(raw_dir)}"))
+  }
+
+  str_replace_all(raw_dir, "\\\\", "/")
+}
+```
