@@ -18,14 +18,14 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWoRkflow\n\n\n\n\n\n\n\nworkflow\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\nAaron Mackay\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nAug 27, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+    "text": "Highlighting In ggplot\n\n\n\n\n\n\n\nggplot\n\n\ndataviz\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\nAz\n\n\n\n\n\n\n  \n\n\n\n\nSuper Helpful Very Little Tips and Tricks\n\n\n\n\n\n\n\nggplot\n\n\ndataviz\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\nAz\n\n\n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWoRkflow\n\n\n\n\n\n\n\nworkflow\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\nAaron Mackay\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nAug 27, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nAug 27, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Aaron Mackay",
     "section": "",
-    "text": "Hi i’m Aaron etc."
+    "text": "This is the about section"
   },
   {
     "objectID": "posts/r-workflow/index.html",
@@ -33,5 +33,47 @@
     "title": "WoRkflow",
     "section": "",
     "text": "Getting the right workflow in R is hard.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/Quickly highlighting ggplot columns/post.html",
+    "href": "posts/Quickly highlighting ggplot columns/post.html",
+    "title": "Highlighting In ggplot",
+    "section": "",
+    "text": "Highlighting specific columns in ggplot is a useful\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/Quarto Tips/index.html",
+    "href": "posts/Quarto Tips/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "Use knitr::opts_chunk$set(echo = , warning = , message = ) to set a default chunk option\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/Capturing Warnings/index.html",
+    "href": "posts/Capturing Warnings/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "Capturing Warnings is like super useful and stuff.\n\nwithCallingHandlers()\ntryCatch()\n\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/Cumulative vs Per Period Plots/index.html",
+    "href": "posts/Cumulative vs Per Period Plots/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "When would you use a cumulative plot vs a per period one (hint, cumulative plots tend to be better for spotting trends etc.)\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/Quickest way to add text to ggplot/index.html",
+    "href": "posts/Quickest way to add text to ggplot/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/Super Helpful Very Little Tips and Tricks/post.html",
+    "href": "posts/Super Helpful Very Little Tips and Tricks/post.html",
+    "title": "Super Helpful Very Little Tips and Tricks",
+    "section": "",
+    "text": "Paste Windows File Directory\nSomething about how annoying the backslashes are etc.\n\nreadClipboard() %&gt;% str_replace_all(\"\\\\\\\\\", \"/\")\n\n [1] \"2021\\t 143,032 \\t 243,176 \" \"2022\\t 148,153 \\t 249,769 \"\n [3] \"2023\\t 152,999 \\t 256,275 \" \"2024\\t 158,001 \\t 263,121 \"\n [5] \"2025\\t 163,048 \\t 270,302 \" \"2026\\t 168,403 \\t 278,048 \"\n [7] \"2027\\t 174,322 \\t 286,863 \" \"2028\\t 179,888 \\t 295,495 \"\n [9] \"2029\\t 185,526 \\t 304,526 \" \"2030\\t 191,171 \\t 313,759 \"\n[11] \"2031\\t 197,013 \\t 323,327 \" \"2032\\t 203,332 \\t 333,890 \"\n[13] \"2033\\t 209,004 \\t 343,690 \" \"2034\\t 214,549 \\t 353,594 \"\n[15] \"2035\\t 219,854 \\t 363,321 \" \"2036\\t 225,278 \\t 373,119 \"\n[17] \"2037\\t 231,106 \\t 384,012 \" \"2038\\t 236,280 \\t 393,893 \"\n[19] \"2039\\t 240,905 \\t 402,916 \" \"2040\\t 245,281 \\t 411,606 \"\n\npaste.path = function() {\n  raw_dir &lt;- readClipboard()\n\n  if(is.null(raw_dir)) {\n    stop(\"Oops, your clipboard appears to be empty\")\n  }\n\n  if(!str_detect(raw_dir, \"\\\\\\\\\")) {\n    stop(stringr::str_glue(\"Hmm it seems you haven't provided a windows file directory path: \\n{format(raw_dir)}\"))\n  }\n\n  str_replace_all(raw_dir, \"\\\\\\\\\", \"/\")\n}"
   }
 ]

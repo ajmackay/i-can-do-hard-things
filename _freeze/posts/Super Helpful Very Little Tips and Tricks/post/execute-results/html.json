@@ -1,0 +1,14 @@
+{
+  "hash": "8a22d4d42b414be117f206a0525d73dc",
+  "result": {
+    "markdown": "---\ntitle: \"Super Helpful Very Little Tips and Tricks\"\nauthor: \"Az\"\ndate: \"2023-09-05\"\ncategories: [ggplot, dataviz]\n---\n\n\n# Paste Windows File Directory\n\nSomething about how annoying the backslashes are etc.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nreadClipboard() %>% str_replace_all(\"\\\\\\\\\", \"/\")\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n [1] \"2021\\t 143,032 \\t 243,176 \" \"2022\\t 148,153 \\t 249,769 \"\n [3] \"2023\\t 152,999 \\t 256,275 \" \"2024\\t 158,001 \\t 263,121 \"\n [5] \"2025\\t 163,048 \\t 270,302 \" \"2026\\t 168,403 \\t 278,048 \"\n [7] \"2027\\t 174,322 \\t 286,863 \" \"2028\\t 179,888 \\t 295,495 \"\n [9] \"2029\\t 185,526 \\t 304,526 \" \"2030\\t 191,171 \\t 313,759 \"\n[11] \"2031\\t 197,013 \\t 323,327 \" \"2032\\t 203,332 \\t 333,890 \"\n[13] \"2033\\t 209,004 \\t 343,690 \" \"2034\\t 214,549 \\t 353,594 \"\n[15] \"2035\\t 219,854 \\t 363,321 \" \"2036\\t 225,278 \\t 373,119 \"\n[17] \"2037\\t 231,106 \\t 384,012 \" \"2038\\t 236,280 \\t 393,893 \"\n[19] \"2039\\t 240,905 \\t 402,916 \" \"2040\\t 245,281 \\t 411,606 \"\n```\n:::\n\n```{.r .cell-code}\npaste.path = function() {\n  raw_dir <- readClipboard()\n\n  if(is.null(raw_dir)) {\n    stop(\"Oops, your clipboard appears to be empty\")\n  }\n\n  if(!str_detect(raw_dir, \"\\\\\\\\\")) {\n    stop(stringr::str_glue(\"Hmm it seems you haven't provided a windows file directory path: \\n{format(raw_dir)}\"))\n  }\n\n  str_replace_all(raw_dir, \"\\\\\\\\\", \"/\")\n}\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

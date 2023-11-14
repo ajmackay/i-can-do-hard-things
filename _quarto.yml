@@ -3,7 +3,7 @@ project:
 
 website:
   title: "I Can Do Hard Things"
-  description: "A blog by Aaron Mackay where I try and do things that smart people do"
+  description: "A blog where I try and do things that smart people do"
   navbar:
     right:
       - blog.qmd
@@ -12,7 +12,7 @@ website:
 format:
   html:
     theme: cosmo
-    css: styles.css
+    css: styles.css # change to theme.scss when ready to play with css
 
 editor: visual
 

@@ -15,4 +15,4 @@ about:
       href: https://github.com
 ---
 
-Hi i'm Aaron etc.
+This is the about section
