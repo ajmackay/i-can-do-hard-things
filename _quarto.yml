@@ -2,9 +2,9 @@ project:
   type: website
 
 website:
-  title: "I Can Do Hard Things"
+  title: "Aaron Mackay"
   site-url: https://amackay.netlify.app/
-  description: "A blog where I try and do things that smart people do"
+  description: "Data Science Blog by me... Aaron"
   navbar:
     right:
       - blog.qmd

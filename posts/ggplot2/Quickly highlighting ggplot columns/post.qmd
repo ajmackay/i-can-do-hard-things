@@ -1,6 +1,5 @@
 ---
 title: "Highlighting In ggplot"
-author: "Az"
 date: "2023-09-05"
 categories: [ggplot, dataviz]
 ---

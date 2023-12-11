@@ -17,4 +17,4 @@ title-block-banner: true
 
 #### [ggplot2-series](ggplot-series.html)
 
-This is my ggplot series I suppose.
+Everything I know about ggplot2.
