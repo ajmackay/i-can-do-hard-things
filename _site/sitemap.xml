@@ -2,14 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://amackay.netlify.app/blog.html</loc>
-    <lastmod>2023-11-20T06:53:31.761Z</lastmod>
+    <lastmod>2023-12-11T05:05:30.830Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/index.html</loc>
-    <lastmod>2023-11-20T06:53:06.071Z</lastmod>
+    <lastmod>2023-12-11T05:04:49.885Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/ggplot-series.html</loc>
-    <lastmod>2023-11-20T06:53:26.603Z</lastmod>
+    <lastmod>2023-12-11T05:05:33.472Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amackay.netlify.app/posts/ggplot2/Quickly highlighting ggplot columns/post.html</loc>
+    <lastmod>2023-12-11T05:04:48.065Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amackay.netlify.app/posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html</loc>
+    <lastmod>2023-12-11T05:04:47.358Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amackay.netlify.app/archive.html</loc>
+    <lastmod>2023-12-11T05:04:45.632Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amackay.netlify.app/posts/ggplot2/Quickest way to add text to ggplot/index.html</loc>
+    <lastmod>2023-12-11T05:04:47.711Z</lastmod>
   </url>
 </urlset>

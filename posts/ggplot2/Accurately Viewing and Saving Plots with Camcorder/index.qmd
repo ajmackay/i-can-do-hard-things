@@ -1,7 +1,11 @@
 ---
-title: "Welcome To My Blog"
+title: "Accurately Viewing and Saving Plots using Camcorder"
 date: "2023-11-12"
 categories: [ggplot2]
 ---
 
-Ggplot2 is a great thing.
+```{r include=FALSE}
+
+```
+
+Something I have always struggled with ggplot is after I have spent how many hours tinkering and finessing a plot, I will export it

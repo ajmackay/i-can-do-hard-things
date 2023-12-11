@@ -2,19 +2,37 @@
   {
     "listing": "/blog.html",
     "items": [
-      "/posts/Quickly highlighting ggplot columns/post.html",
+      "/posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html",
       "/posts/Super Helpful Very Little Tips and Tricks/post.html",
+      "/posts/ggplot2/Quickly highlighting ggplot columns/post.html",
       "/posts/Capturing Warnings/index.html",
       "/posts/Cumulative vs Per Period Plots/index.html",
       "/posts/Quarto Tips/index.html",
       "/posts/post-with-code/index.html",
       "/posts/r-workflow/index.html",
-      "/posts/Quickest way to add text to ggplot/index.html",
-      "/posts/welcome/index.html"
+      "/posts/ggplot2/Quickest way to add text to ggplot/index.html"
     ]
   },
   {
     "listing": "/ggplot-series.html",
-    "items": []
+    "items": [
+      "/posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html",
+      "/posts/ggplot2/Quickly highlighting ggplot columns/post.html",
+      "/posts/ggplot2/Quickest way to add text to ggplot/index.html"
+    ]
+  },
+  {
+    "listing": "/archive.html",
+    "items": [
+      "/posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html",
+      "/posts/Super Helpful Very Little Tips and Tricks/post.html",
+      "/posts/ggplot2/Quickly highlighting ggplot columns/post.html",
+      "/posts/Capturing Warnings/index.html",
+      "/posts/Cumulative vs Per Period Plots/index.html",
+      "/posts/Quarto Tips/index.html",
+      "/posts/post-with-code/index.html",
+      "/posts/r-workflow/index.html",
+      "/posts/ggplot2/Quickest way to add text to ggplot/index.html"
+    ]
   }
 ]

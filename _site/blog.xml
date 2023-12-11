@@ -5,31 +5,29 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>I Can Do Hard Things</title>
+<title>Aaron Mackay</title>
 <link>https://amackay.netlify.app/blog.html</link>
 <atom:link href="https://amackay.netlify.app/blog.xml" rel="self" type="application/rss+xml"/>
-<description>A blog where I try and do things that smart people do</description>
+<description>Data Science Blog by me... Aaron</description>
 <generator>quarto-1.3.450</generator>
-<lastBuildDate>Mon, 04 Sep 2023 14:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 11 Nov 2023 13:00:00 GMT</lastBuildDate>
 <item>
-  <title>Highlighting In ggplot</title>
+  <title>Welcome To My Blog</title>
   <dc:creator>Az </dc:creator>
-  <link>https://amackay.netlify.app/posts/Quickly highlighting ggplot columns/post.html</link>
+  <link>https://amackay.netlify.app/posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html</link>
   <description><![CDATA[ 
 
 
 
 
-<p>Highlighting specific columns in ggplot is a useful</p>
-<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
+<p>Ggplot2 is a great thing.</p>
 
 
 
  ]]></description>
-  <category>ggplot</category>
-  <category>dataviz</category>
-  <guid>https://amackay.netlify.app/posts/Quickly highlighting ggplot columns/post.html</guid>
-  <pubDate>Mon, 04 Sep 2023 14:00:00 GMT</pubDate>
+  <category>ggplot2</category>
+  <guid>https://amackay.netlify.app/posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html</guid>
+  <pubDate>Sat, 11 Nov 2023 13:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Super Helpful Very Little Tips and Tricks</title>
@@ -143,6 +141,26 @@ font-style: inherit;">"/"</span>)</span>
   <category>ggplot</category>
   <category>dataviz</category>
   <guid>https://amackay.netlify.app/posts/Super Helpful Very Little Tips and Tricks/post.html</guid>
+  <pubDate>Mon, 04 Sep 2023 14:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Highlighting In ggplot</title>
+  <dc:creator>Az </dc:creator>
+  <link>https://amackay.netlify.app/posts/ggplot2/Quickly highlighting ggplot columns/post.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Highlighting specific columns in ggplot is a useful</p>
+<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
+
+
+
+ ]]></description>
+  <category>ggplot</category>
+  <category>dataviz</category>
+  <guid>https://amackay.netlify.app/posts/ggplot2/Quickly highlighting ggplot columns/post.html</guid>
   <pubDate>Mon, 04 Sep 2023 14:00:00 GMT</pubDate>
 </item>
 <item>
@@ -315,41 +333,21 @@ font-style: inherit;">1</span></span></code></pre></div>
 <item>
   <title>Welcome To My Blog</title>
   <dc:creator>Tristan O&#39;Malley</dc:creator>
-  <link>https://amackay.netlify.app/posts/Quickest way to add text to ggplot/index.html</link>
+  <link>https://amackay.netlify.app/posts/ggplot2/Quickest way to add text to ggplot/index.html</link>
   <description><![CDATA[ 
 
 
 
 
 <p>This is the first post in a Quarto blog. Welcome!</p>
-<p><img src="https://amackay.netlify.app/posts/Quickest way to add text to ggplot/thumbnail.jpg" class="img-fluid"></p>
+<p><img src="https://amackay.netlify.app/posts/ggplot2/Quickest way to add text to ggplot/thumbnail.jpg" class="img-fluid"></p>
 <p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
 
 
 
  ]]></description>
   <category>news</category>
-  <guid>https://amackay.netlify.app/posts/Quickest way to add text to ggplot/index.html</guid>
-  <pubDate>Sat, 26 Aug 2023 14:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Welcome To My Blog</title>
-  <dc:creator>Tristan O&#39;Malley</dc:creator>
-  <link>https://amackay.netlify.app/posts/welcome/index.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>This is the first post in a Quarto blog. Welcome!</p>
-<p><img src="https://amackay.netlify.app/posts/welcome/thumbnail.jpg" class="img-fluid"></p>
-<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
-
-
-
- ]]></description>
-  <category>news</category>
-  <guid>https://amackay.netlify.app/posts/welcome/index.html</guid>
+  <guid>https://amackay.netlify.app/posts/ggplot2/Quickest way to add text to ggplot/index.html</guid>
   <pubDate>Sat, 26 Aug 2023 14:00:00 GMT</pubDate>
 </item>
 </channel>

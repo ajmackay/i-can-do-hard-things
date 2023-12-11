@@ -1,0 +1,7 @@
+---
+title: "Creating a ggplot2 theme"
+date: "2023-09-05"
+categories: [ggplot, dataviz]
+---
+
+Creating a ggplot2 theme is a cool thing to do.
