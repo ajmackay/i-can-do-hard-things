@@ -1,1 +1,1 @@
-Sitemap: https://aaron-mackay.netlify.app/sitemap.xml
+Sitemap: https://amackay.netlify.app/sitemap.xml

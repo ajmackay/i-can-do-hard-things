@@ -3,6 +3,7 @@ project:
 
 website:
   title: "I Can Do Hard Things"
+  site-url: https://amackay.netlify.app/
   description: "A blog where I try and do things that smart people do"
   navbar:
     right:

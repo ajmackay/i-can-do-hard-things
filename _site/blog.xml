@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>I Can Do Hard Things</title>
+<link>https://amackay.netlify.app/blog.html</link>
+<atom:link href="https://amackay.netlify.app/blog.xml" rel="self" type="application/rss+xml"/>
+<description>A blog where I try and do things that smart people do</description>
+<generator>quarto-1.3.450</generator>
+<lastBuildDate>Mon, 04 Sep 2023 14:00:00 GMT</lastBuildDate>
+<item>
+  <title>Highlighting In ggplot</title>
+  <dc:creator>Az </dc:creator>
+  <link>https://amackay.netlify.app/posts/Quickly highlighting ggplot columns/post.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Highlighting specific columns in ggplot is a useful</p>
+<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
+
+
+
+ ]]></description>
+  <category>ggplot</category>
+  <category>dataviz</category>
+  <guid>https://amackay.netlify.app/posts/Quickly highlighting ggplot columns/post.html</guid>
+  <pubDate>Mon, 04 Sep 2023 14:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Super Helpful Very Little Tips and Tricks</title>
+  <dc:creator>Az </dc:creator>
+  <link>https://amackay.netlify.app/posts/Super Helpful Very Little Tips and Tricks/post.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="paste-windows-file-directory" class="level1">
+<h1>Paste Windows File Directory</h1>
+<p>Something about how annoying the backslashes are etc.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">readClipboard</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_replace_all</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "2021\t 143,032 \t 243,176 " "2022\t 148,153 \t 249,769 "
+ [3] "2023\t 152,999 \t 256,275 " "2024\t 158,001 \t 263,121 "
+ [5] "2025\t 163,048 \t 270,302 " "2026\t 168,403 \t 278,048 "
+ [7] "2027\t 174,322 \t 286,863 " "2028\t 179,888 \t 295,495 "
+ [9] "2029\t 185,526 \t 304,526 " "2030\t 191,171 \t 313,759 "
+[11] "2031\t 197,013 \t 323,327 " "2032\t 203,332 \t 333,890 "
+[13] "2033\t 209,004 \t 343,690 " "2034\t 214,549 \t 353,594 "
+[15] "2035\t 219,854 \t 363,321 " "2036\t 225,278 \t 373,119 "
+[17] "2037\t 231,106 \t 384,012 " "2038\t 236,280 \t 393,893 "
+[19] "2039\t 240,905 \t 402,916 " "2040\t 245,281 \t 411,606 "</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">paste.path <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>() {</span>
+<span id="cb3-2">  raw_dir <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">readClipboard</span>()</span>
+<span id="cb3-3"></span>
+<span id="cb3-4">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.null</span>(raw_dir)) {</span>
+<span id="cb3-5">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">stop</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Oops, your clipboard appears to be empty"</span>)</span>
+<span id="cb3-6">  }</span>
+<span id="cb3-7"></span>
+<span id="cb3-8">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_detect</span>(raw_dir, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)) {</span>
+<span id="cb3-9">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">stop</span>(stringr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_glue</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Hmm it seems you haven't provided a windows file directory path: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{format(raw_dir)}"</span>))</span>
+<span id="cb3-10">  }</span>
+<span id="cb3-11"></span>
+<span id="cb3-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_replace_all</span>(raw_dir, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/"</span>)</span>
+<span id="cb3-13">}</span></code></pre></div>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>ggplot</category>
+  <category>dataviz</category>
+  <guid>https://amackay.netlify.app/posts/Super Helpful Very Little Tips and Tricks/post.html</guid>
+  <pubDate>Mon, 04 Sep 2023 14:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Post With Code</title>
+  <dc:creator>Harlow Malloc</dc:creator>
+  <link>https://amackay.netlify.app/posts/Capturing Warnings/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Capturing Warnings is like super useful and stuff.</p>
+<ul>
+<li><p>withCallingHandlers()</p></li>
+<li><p>tryCatch()</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <category>code</category>
+  <category>analysis</category>
+  <guid>https://amackay.netlify.app/posts/Capturing Warnings/index.html</guid>
+  <pubDate>Tue, 29 Aug 2023 14:00:00 GMT</pubDate>
+  <media:content url="https://amackay.netlify.app/posts/Capturing Warnings/image.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Post With Code</title>
+  <dc:creator>Harlow Malloc</dc:creator>
+  <link>https://amackay.netlify.app/posts/Cumulative vs Per Period Plots/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>When would you use a cumulative plot vs a per period one (hint, cumulative plots tend to be better for spotting trends etc.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <category>code</category>
+  <category>analysis</category>
+  <guid>https://amackay.netlify.app/posts/Cumulative vs Per Period Plots/index.html</guid>
+  <pubDate>Tue, 29 Aug 2023 14:00:00 GMT</pubDate>
+  <media:content url="https://amackay.netlify.app/posts/Cumulative vs Per Period Plots/image.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Post With Code</title>
+  <dc:creator>Harlow Malloc</dc:creator>
+  <link>https://amackay.netlify.app/posts/Quarto Tips/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Use <code>knitr::opts_chunk$set(echo = , warning = , message = )</code> to set a default chunk option</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <category>code</category>
+  <category>analysis</category>
+  <guid>https://amackay.netlify.app/posts/Quarto Tips/index.html</guid>
+  <pubDate>Tue, 29 Aug 2023 14:00:00 GMT</pubDate>
+  <media:content url="https://amackay.netlify.app/posts/Quarto Tips/image.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Post With Code</title>
+  <dc:creator>Harlow Malloc</dc:creator>
+  <link>https://amackay.netlify.app/posts/post-with-code/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>This is a post with executable code.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <category>code</category>
+  <category>analysis</category>
+  <guid>https://amackay.netlify.app/posts/post-with-code/index.html</guid>
+  <pubDate>Tue, 29 Aug 2023 14:00:00 GMT</pubDate>
+  <media:content url="https://amackay.netlify.app/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>WoRkflow</title>
+  <dc:creator>Aaron Mackay</dc:creator>
+  <link>https://amackay.netlify.app/posts/r-workflow/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Getting the right workflow in R is hard.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+
+
+
+ ]]></description>
+  <category>workflow</category>
+  <guid>https://amackay.netlify.app/posts/r-workflow/index.html</guid>
+  <pubDate>Tue, 29 Aug 2023 14:00:00 GMT</pubDate>
+  <media:content url="https://amackay.netlify.app/posts/r-workflow/image.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Welcome To My Blog</title>
+  <dc:creator>Tristan O&#39;Malley</dc:creator>
+  <link>https://amackay.netlify.app/posts/Quickest way to add text to ggplot/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>This is the first post in a Quarto blog. Welcome!</p>
+<p><img src="https://amackay.netlify.app/posts/Quickest way to add text to ggplot/thumbnail.jpg" class="img-fluid"></p>
+<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <guid>https://amackay.netlify.app/posts/Quickest way to add text to ggplot/index.html</guid>
+  <pubDate>Sat, 26 Aug 2023 14:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Welcome To My Blog</title>
+  <dc:creator>Tristan O&#39;Malley</dc:creator>
+  <link>https://amackay.netlify.app/posts/welcome/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>This is the first post in a Quarto blog. Welcome!</p>
+<p><img src="https://amackay.netlify.app/posts/welcome/thumbnail.jpg" class="img-fluid"></p>
+<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <guid>https://amackay.netlify.app/posts/welcome/index.html</guid>
+  <pubDate>Sat, 26 Aug 2023 14:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>

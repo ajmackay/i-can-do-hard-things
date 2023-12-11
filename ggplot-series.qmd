@@ -1,0 +1,13 @@
+---
+title: "Series: Everything I know about ggplot2"
+listing:
+  contents: posts/ggplot2
+  sort: "date desc"
+  type: default
+  categories: false
+  sort-ui: false
+  filter-ui: false
+  fields: [date, title, description]
+page-layout: full
+title-block-banner: true
+---
