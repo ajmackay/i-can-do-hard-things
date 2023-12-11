@@ -1,0 +1,7 @@
+---
+title: "Welcome To My Blog"
+date: "2023-11-12"
+categories: [ggplot2]
+---
+
+Ggplot2 is a great thing.
