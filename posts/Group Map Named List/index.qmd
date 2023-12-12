@@ -1,0 +1,68 @@
+---
+title: "Named Lists from Group Maps"
+date: "2023-12-12"
+categories: [iteration, purrr, map]
+image: "image.jpg"
+editor_options: 
+  chunk_output_type: console
+---
+
+The <code>group_map()</code> function is one of my favourite iterative functions within the <code>purrr</code> package. Like the other iterative functions within the purrr-verse, it has been designed to be simple and intuitive.
+
+In a nutshell, <code>group_map()</code> applies a function over each group of a grouped dataframe and returns a list containing the function result per group. This is great when we want to...well apply a function on a per group basis.
+
+As a quick example, say we want to run a regression to pedict petal length with petal width for each class of species using data in the <code>iris</code> dataset. A <code>group_map()</code> will allow you to do this, and save the outcome in one object so that you can quickly access each regression outcome.
+
+```{r, message=FALSE}
+library(dplyr)
+library(purrr)
+
+iris_df <- datasets::iris %>% as_tibble()
+
+lm_formula <- formula("Petal.Length ~ Petal.Width")
+
+lm_results <- iris_df %>% 
+  group_by(Species) %>% 
+  group_map(function(dat, group) {
+    lm(lm_formula, data = dat)
+  })
+
+```
+
+And now we can quickly access our <code>lm</code> results by calling <code>lm_results</code>. Combining this with <code>broom</code>'s <code>tidy</code> in a <code>map()</code> means you can quickly see the key results of each regression.
+
+```{r}
+map(lm_results, broom::tidy)
+```
+
+Here you may notice the key issue for which this week's blog post is designed to address: How can you tell which result corresponds to which group?
+
+The solution is reasonably simple: Create a list that contains the <code>lm</code> object and set the element names of the list to be the current group.
+
+```{r}
+lm_results <- iris_df %>% 
+  group_by(Species) %>% 
+  group_map(function(dat, group) {
+    model <- lm(lm_formula, data = dat)
+    
+    # Place the lm model into a list and set the name to be the current group
+    list(model) %>% 
+      setNames(group$Species)
+  })
+
+lm_results
+```
+
+And now you can see which <code>lm</code> model corresponds to which species group. However what this has done is added each named list element to the list that is created by <code>group_map()</code>. So while we can see in our output which element of <code>lm_results</code> contains which <code>lm</code> model, we cannot easily access these elements with the <code>\$</code> operator, nor can we quickly iterate over each element like we could do previously.
+
+Thankfully, the solution again is simple: if we use <code>flatten()</code> on our <code>group_map()</code> result, it will remove the nested layers that have in our list and put all the elements in one single layer.
+
+```{r}
+lm_results <- flatten(lm_results)
+
+lm_results
+```
+
+And now we all of our regression results packaged neatly into one, with each element clearly labelled as so:
+
+![](screenshot.png)

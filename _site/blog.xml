@@ -10,9 +10,231 @@
 <atom:link href="https://amackay.netlify.app/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Data Science Blog by me... Aaron</description>
 <generator>quarto-1.3.450</generator>
-<lastBuildDate>Sat, 11 Nov 2023 13:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 11 Dec 2023 13:00:00 GMT</lastBuildDate>
 <item>
-  <title>Welcome To My Blog</title>
+  <title>Named Lists from Group Maps</title>
+  <dc:creator>Az </dc:creator>
+  <link>https://amackay.netlify.app/posts/Group Map Named List/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>The <code>group_map()</code> function is one of my favourite iterative functions within the <code>purrr</code> package. Like the other iterative functions within the purrr-verse, it has been designed to be simple and intuitive.</p>
+<p>In a nutshell, <code>group_map()</code> applies a function over each group of a grouped dataframe and returns a list containing the function result per group. This is great when we want to…well apply a function on a per group basis.</p>
+<p>As a quick example, say we want to run a regression to pedict petal length with petal width for each class of species using data in the <code>iris</code> dataset. A <code>group_map()</code> will allow you to do this, and save the outcome in one object so that you can quickly access each regression outcome.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(dplyr)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(purrr)</span>
+<span id="cb1-3"></span>
+<span id="cb1-4">iris_df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> datasets<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span>iris <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as_tibble</span>()</span>
+<span id="cb1-5"></span>
+<span id="cb1-6">lm_formula <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">formula</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Petal.Length ~ Petal.Width"</span>)</span>
+<span id="cb1-7"></span>
+<span id="cb1-8">lm_results <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> iris_df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb1-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(Species) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb1-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_map</span>(<span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(dat, group) {</span>
+<span id="cb1-11">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lm</span>(lm_formula, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> dat)</span>
+<span id="cb1-12">  })</span></code></pre></div>
+</div>
+<p>And now we can quickly access our <code>lm</code> results by calling <code>lm_results</code>. Combining this with <code>broom</code>’s <code>tidy</code> in a <code>map()</code> means you can quickly see the key results of each regression.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(lm_results, broom<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span>tidy)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+# A tibble: 2 × 5
+  term        estimate std.error statistic  p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)    1.33     0.0600     22.1  7.68e-27
+2 Petal.Width    0.546    0.224       2.44 1.86e- 2
+
+[[2]]
+# A tibble: 2 × 5
+  term        estimate std.error statistic  p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)     1.78     0.284      6.28 9.48e- 8
+2 Petal.Width     1.87     0.212      8.83 1.27e-11
+
+[[3]]
+# A tibble: 2 × 5
+  term        estimate std.error statistic       p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;
+1 (Intercept)    4.24      0.561      7.56 0.00000000104
+2 Petal.Width    0.647     0.275      2.36 0.0225       </code></pre>
+</div>
+</div>
+<p>Here you may notice the key issue for which this week’s blog post is designed to address: How can you tell which result corresponds to which group?</p>
+<p>The solution is reasonably simple: Create a list that contains the <code>lm</code> object and set the element names of the list to be the current group.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">lm_results <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> iris_df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb4-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(Species) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb4-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_map</span>(<span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(dat, group) {</span>
+<span id="cb4-4">    model <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lm</span>(lm_formula, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> dat)</span>
+<span id="cb4-5">    </span>
+<span id="cb4-6">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Place the lm model into a list and set the name to be the current group</span></span>
+<span id="cb4-7">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(model) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb4-8">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">setNames</span>(group<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Species)</span>
+<span id="cb4-9">  })</span>
+<span id="cb4-10"></span>
+<span id="cb4-11">lm_results</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[[1]]$setosa
+
+Call:
+lm(formula = lm_formula, data = dat)
+
+Coefficients:
+(Intercept)  Petal.Width  
+     1.3276       0.5465  
+
+
+
+[[2]]
+[[2]]$versicolor
+
+Call:
+lm(formula = lm_formula, data = dat)
+
+Coefficients:
+(Intercept)  Petal.Width  
+      1.781        1.869  
+
+
+
+[[3]]
+[[3]]$virginica
+
+Call:
+lm(formula = lm_formula, data = dat)
+
+Coefficients:
+(Intercept)  Petal.Width  
+     4.2407       0.6473  </code></pre>
+</div>
+</div>
+<p>And now you can see which <code>lm</code> model corresponds to which species group. However what this has done is added each named list element to the list that is created by <code>group_map()</code>. So while we can see in our output which element of <code>lm_results</code> contains which <code>lm</code> model, we cannot easily access these elements with the <code>$</code> operator, nor can we quickly iterate over each element like we could do previously.</p>
+<p>Thankfully, the solution again is simple: if we use <code>flatten()</code> on our <code>group_map()</code> result, it will remove the nested layers that have in our list and put all the elements in one single layer.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">lm_results <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">flatten</span>(lm_results)</span>
+<span id="cb6-2"></span>
+<span id="cb6-3">lm_results</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$setosa
+
+Call:
+lm(formula = lm_formula, data = dat)
+
+Coefficients:
+(Intercept)  Petal.Width  
+     1.3276       0.5465  
+
+
+$versicolor
+
+Call:
+lm(formula = lm_formula, data = dat)
+
+Coefficients:
+(Intercept)  Petal.Width  
+      1.781        1.869  
+
+
+$virginica
+
+Call:
+lm(formula = lm_formula, data = dat)
+
+Coefficients:
+(Intercept)  Petal.Width  
+     4.2407       0.6473  </code></pre>
+</div>
+</div>
+<p>And now we all of our regression results packaged neatly into one, with each element clearly labelled as so:</p>
+<p><img src="https://amackay.netlify.app/posts/Group Map Named List/screenshot.png" class="img-fluid"></p>
+
+
+
+ ]]></description>
+  <category>iteration</category>
+  <category>purrr</category>
+  <category>map</category>
+  <guid>https://amackay.netlify.app/posts/Group Map Named List/index.html</guid>
+  <pubDate>Mon, 11 Dec 2023 13:00:00 GMT</pubDate>
+  <media:content url="https://amackay.netlify.app/posts/Group Map Named List/image.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Accurately Viewing and Saving Plots using Camcorder</title>
   <dc:creator>Az </dc:creator>
   <link>https://amackay.netlify.app/posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html</link>
   <description><![CDATA[ 
@@ -20,7 +242,7 @@
 
 
 
-<p>Ggplot2 is a great thing.</p>
+<p>Something I have always struggled with ggplot is after I have spent how many hours tinkering and finessing a plot, I will export it</p>
 
 
 
@@ -164,6 +386,25 @@ font-style: inherit;">"/"</span>)</span>
   <pubDate>Mon, 04 Sep 2023 14:00:00 GMT</pubDate>
 </item>
 <item>
+  <title>Creating a ggplot2 theme</title>
+  <dc:creator>Az </dc:creator>
+  <link>https://amackay.netlify.app/posts/ggplot2/Setting up a ggplot2 theme/post.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Creating a ggplot2 theme is a cool thing to do.</p>
+
+
+
+ ]]></description>
+  <category>ggplot</category>
+  <category>dataviz</category>
+  <guid>https://amackay.netlify.app/posts/ggplot2/Setting up a ggplot2 theme/post.html</guid>
+  <pubDate>Mon, 04 Sep 2023 14:00:00 GMT</pubDate>
+</item>
+<item>
   <title>Post With Code</title>
   <dc:creator>Harlow Malloc</dc:creator>
   <link>https://amackay.netlify.app/posts/Capturing Warnings/index.html</link>
@@ -199,39 +440,6 @@ font-style: inherit;">1</span></span></code></pre></div>
   <guid>https://amackay.netlify.app/posts/Capturing Warnings/index.html</guid>
   <pubDate>Tue, 29 Aug 2023 14:00:00 GMT</pubDate>
   <media:content url="https://amackay.netlify.app/posts/Capturing Warnings/image.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Post With Code</title>
-  <dc:creator>Harlow Malloc</dc:creator>
-  <link>https://amackay.netlify.app/posts/Cumulative vs Per Period Plots/index.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>When would you use a cumulative plot vs a per period one (hint, cumulative plots tend to be better for spotting trends etc.)</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span></span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-
-
-
- ]]></description>
-  <category>news</category>
-  <category>code</category>
-  <category>analysis</category>
-  <guid>https://amackay.netlify.app/posts/Cumulative vs Per Period Plots/index.html</guid>
-  <pubDate>Tue, 29 Aug 2023 14:00:00 GMT</pubDate>
-  <media:content url="https://amackay.netlify.app/posts/Cumulative vs Per Period Plots/image.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Post With Code</title>

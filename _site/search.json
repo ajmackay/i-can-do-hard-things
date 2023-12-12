@@ -18,7 +18,7 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "Series\n\nggplot2-series\nEverything I know about ggplot2.\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nggplot2\n\n\n\n\n\n\n\n\n\n\n\nNov 12, 2023\n\n\n\n\n\n\n\n\nSuper Helpful Very Little Tips and Tricks\n\n\n\n\n\n\n\nggplot\n\n\ndataviz\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nHighlighting In ggplot\n\n\n\n\n\n\n\nggplot\n\n\ndataviz\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nWoRkflow\n\n\n\n\n\n\n\nworkflow\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nAug 27, 2023\n\n\n\n\n\n\nNo matching items"
+    "text": "Series\n\nggplot2-series\nEverything I know about ggplot2.\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nNamed Lists from Group Maps\n\n\n\n\n\n\n\niteration\n\n\npurrr\n\n\nmap\n\n\n\n\n\n\n\n\n\n\n\nDec 12, 2023\n\n\n\n\n\n\n\n\nAccurately Viewing and Saving Plots using Camcorder\n\n\n\n\n\n\n\nggplot2\n\n\n\n\n\n\n\n\n\n\n\nNov 12, 2023\n\n\n\n\n\n\n\n\nSuper Helpful Very Little Tips and Tricks\n\n\n\n\n\n\n\nggplot\n\n\ndataviz\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nHighlighting In ggplot\n\n\n\n\n\n\n\nggplot\n\n\ndataviz\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nCreating a ggplot2 theme\n\n\n\n\n\n\n\nggplot\n\n\ndataviz\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nWoRkflow\n\n\n\n\n\n\n\nworkflow\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nAug 27, 2023\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -81,7 +81,7 @@
     "href": "ggplot-series.html",
     "title": "Series: Everything I know about ggplot2",
     "section": "",
-    "text": "Welcome To My Blog\n\n\n\n\n\n\n\n\n\n\n\n\nNov 12, 2023\n\n\n\n\n\n\n\n\nHighlighting In ggplot\n\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\n\n\n\nAug 27, 2023\n\n\n\n\n\n\nNo matching items"
+    "text": "Accurately Viewing and Saving Plots using Camcorder\n\n\n\n\n\n\n\n\n\n\n\n\nNov 12, 2023\n\n\n\n\n\n\n\n\nHighlighting In ggplot\n\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nCreating a ggplot2 theme\n\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\n\n\n\nAug 27, 2023\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/ggplot2/Quickly highlighting ggplot columns/post.html",
@@ -93,16 +93,16 @@
   {
     "objectID": "posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html",
     "href": "posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html",
-    "title": "Welcome To My Blog",
+    "title": "Accurately Viewing and Saving Plots using Camcorder",
     "section": "",
-    "text": "Ggplot2 is a great thing."
+    "text": "Something I have always struggled with ggplot is after I have spent how many hours tinkering and finessing a plot, I will export it"
   },
   {
     "objectID": "archive.html",
     "href": "archive.html",
     "title": "Archive",
     "section": "",
-    "text": "Welcome To My Blog\n\n\n\n\n\n\n\n\n\nNov 12, 2023\n\n\n\n\n\n\n\n\nSuper Helpful Very Little Tips and Tricks\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nHighlighting In ggplot\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nWoRkflow\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nAug 27, 2023\n\n\n\n\n\n\nNo matching items"
+    "text": "Named Lists from Group Maps\n\n\n\n\n\n\n\n\n\nDec 12, 2023\n\n\n\n\n\n\n\n\nAccurately Viewing and Saving Plots using Camcorder\n\n\n\n\n\n\n\n\n\nNov 12, 2023\n\n\n\n\n\n\n\n\nSuper Helpful Very Little Tips and Tricks\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nHighlighting In ggplot\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nCreating a ggplot2 theme\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nWoRkflow\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nAug 27, 2023\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/ggplot2/Quickest way to add text to ggplot/index.html",
@@ -110,5 +110,19 @@
     "title": "Welcome To My Blog",
     "section": "",
     "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/Group Map Named List/index.html",
+    "href": "posts/Group Map Named List/index.html",
+    "title": "Named Lists from Group Maps",
+    "section": "",
+    "text": "The group_map() function is one of my favourite iterative functions within the purrr package. Like the other iterative functions within the purrr-verse, it has been designed to be simple and intuitive.\nIn a nutshell, group_map() applies a function over each group of a grouped dataframe and returns a list containing the function result per group. This is great when we want to…well apply a function on a per group basis.\nAs a quick example, say we want to run a regression to pedict petal length with petal width for each class of species using data in the iris dataset. A group_map() will allow you to do this, and save the outcome in one object so that you can quickly access each regression outcome.\n\nlibrary(dplyr)\nlibrary(purrr)\n\niris_df &lt;- datasets::iris %&gt;% as_tibble()\n\nlm_formula &lt;- formula(\"Petal.Length ~ Petal.Width\")\n\nlm_results &lt;- iris_df %&gt;% \n  group_by(Species) %&gt;% \n  group_map(function(dat, group) {\n    lm(lm_formula, data = dat)\n  })\n\nAnd now we can quickly access our lm results by calling lm_results. Combining this with broom’s tidy in a map() means you can quickly see the key results of each regression.\n\nmap(lm_results, broom::tidy)\n\n[[1]]\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    1.33     0.0600     22.1  7.68e-27\n2 Petal.Width    0.546    0.224       2.44 1.86e- 2\n\n[[2]]\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)     1.78     0.284      6.28 9.48e- 8\n2 Petal.Width     1.87     0.212      8.83 1.27e-11\n\n[[3]]\n# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)    4.24      0.561      7.56 0.00000000104\n2 Petal.Width    0.647     0.275      2.36 0.0225       \n\n\nHere you may notice the key issue for which this week’s blog post is designed to address: How can you tell which result corresponds to which group?\nThe solution is reasonably simple: Create a list that contains the lm object and set the element names of the list to be the current group.\n\nlm_results &lt;- iris_df %&gt;% \n  group_by(Species) %&gt;% \n  group_map(function(dat, group) {\n    model &lt;- lm(lm_formula, data = dat)\n    \n    # Place the lm model into a list and set the name to be the current group\n    list(model) %&gt;% \n      setNames(group$Species)\n  })\n\nlm_results\n\n[[1]]\n[[1]]$setosa\n\nCall:\nlm(formula = lm_formula, data = dat)\n\nCoefficients:\n(Intercept)  Petal.Width  \n     1.3276       0.5465  \n\n\n\n[[2]]\n[[2]]$versicolor\n\nCall:\nlm(formula = lm_formula, data = dat)\n\nCoefficients:\n(Intercept)  Petal.Width  \n      1.781        1.869  \n\n\n\n[[3]]\n[[3]]$virginica\n\nCall:\nlm(formula = lm_formula, data = dat)\n\nCoefficients:\n(Intercept)  Petal.Width  \n     4.2407       0.6473  \n\n\nAnd now you can see which lm model corresponds to which species group. However what this has done is added each named list element to the list that is created by group_map(). So while we can see in our output which element of lm_results contains which lm model, we cannot easily access these elements with the $ operator, nor can we quickly iterate over each element like we could do previously.\nThankfully, the solution again is simple: if we use flatten() on our group_map() result, it will remove the nested layers that have in our list and put all the elements in one single layer.\n\nlm_results &lt;- flatten(lm_results)\n\nlm_results\n\n$setosa\n\nCall:\nlm(formula = lm_formula, data = dat)\n\nCoefficients:\n(Intercept)  Petal.Width  \n     1.3276       0.5465  \n\n\n$versicolor\n\nCall:\nlm(formula = lm_formula, data = dat)\n\nCoefficients:\n(Intercept)  Petal.Width  \n      1.781        1.869  \n\n\n$virginica\n\nCall:\nlm(formula = lm_formula, data = dat)\n\nCoefficients:\n(Intercept)  Petal.Width  \n     4.2407       0.6473  \n\n\nAnd now we all of our regression results packaged neatly into one, with each element clearly labelled as so:"
+  },
+  {
+    "objectID": "posts/ggplot2/Setting up a ggplot2 theme/post.html",
+    "href": "posts/ggplot2/Setting up a ggplot2 theme/post.html",
+    "title": "Creating a ggplot2 theme",
+    "section": "",
+    "text": "Creating a ggplot2 theme is a cool thing to do."
   }
 ]

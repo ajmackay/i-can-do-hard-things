@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://amackay.netlify.app/blog.html</loc>
-    <lastmod>2023-12-11T05:05:30.830Z</lastmod>
+    <lastmod>2023-12-12T04:05:18.046Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/index.html</loc>
@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://amackay.netlify.app/ggplot-series.html</loc>
-    <lastmod>2023-12-11T05:05:33.472Z</lastmod>
+    <lastmod>2023-12-12T03:36:46.904Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/ggplot2/Quickly highlighting ggplot columns/post.html</loc>
@@ -18,14 +18,22 @@
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html</loc>
-    <lastmod>2023-12-11T05:04:47.358Z</lastmod>
+    <lastmod>2023-12-12T03:36:44.109Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/archive.html</loc>
-    <lastmod>2023-12-11T05:04:45.632Z</lastmod>
+    <lastmod>2023-12-12T04:05:18.742Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/ggplot2/Quickest way to add text to ggplot/index.html</loc>
     <lastmod>2023-12-11T05:04:47.711Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amackay.netlify.app/posts/Group Map Named List/index.html</loc>
+    <lastmod>2023-12-12T04:05:17.007Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amackay.netlify.app/posts/ggplot2/Setting up a ggplot2 theme/post.html</loc>
+    <lastmod>2023-12-12T03:36:44.677Z</lastmod>
   </url>
 </urlset>
