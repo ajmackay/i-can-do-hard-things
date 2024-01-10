@@ -1,0 +1,13 @@
+---
+title: "Creating a ggplot2 theme"
+date: "2023-09-05"
+categories: [ggplot, dataviz]
+---
+
+```{r}
+if(FALSE) {
+https://stackoverflow.com/questions/15720545/use-stat-summary-to-annotate-plot-with-number-of-observations
+  
+}
+
+```

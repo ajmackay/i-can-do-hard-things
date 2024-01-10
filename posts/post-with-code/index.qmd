@@ -1,13 +1,24 @@
 ---
-title: "Post With Code"
+title: "Copying Windows File Paths"
 author: "Harlow Malloc"
-date: "2023-08-30"
-categories: [news, code, analysis]
+date: "13-12-2023"
+categories: [workflow]
 image: "image.jpg"
 ---
 
 This is a post with executable code.
 
 ```{r}
-1 + 1
+paste_path <- function () {
+  raw_dir <- readClipboard()
+  if (is.null(raw_dir)) {
+    stop("Oops, your clipboard appears to be empty")
+  }
+  if (!str_detect(raw_dir, "\\\\")) {
+    stop(stringr::str_glue("Hmm it seems you haven't provided a windows file directory path: \n{format(raw_dir)}"))
+  }
+  str_replace_all(raw_dir, "\\\\", "/")
+}
 ```
+
+Photo by [Maksym Kaharlytskyi](https://unsplash.com/@qwitka?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://unsplash.com/photos/file-cabinet-Q9y3LRuuxmg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)

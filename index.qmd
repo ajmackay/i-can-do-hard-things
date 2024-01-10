@@ -15,4 +15,4 @@ about:
       href: https://github.com
 ---
 
-Testing Update
+These are some things I know about R and Data Science
