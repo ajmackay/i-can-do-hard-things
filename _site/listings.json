@@ -2,14 +2,15 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/post-with-code/index.html",
       "/posts/Group Map Named List/index.html",
       "/posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html",
       "/posts/Super Helpful Very Little Tips and Tricks/post.html",
+      "/posts/ggplot2/Adding Summary Statistics/post.html",
       "/posts/ggplot2/Quickly highlighting ggplot columns/post.html",
       "/posts/ggplot2/Setting up a ggplot2 theme/post.html",
       "/posts/Capturing Warnings/index.html",
       "/posts/Quarto Tips/index.html",
-      "/posts/post-with-code/index.html",
       "/posts/r-workflow/index.html",
       "/posts/ggplot2/Quickest way to add text to ggplot/index.html"
     ]
@@ -18,6 +19,7 @@
     "listing": "/ggplot-series.html",
     "items": [
       "/posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html",
+      "/posts/ggplot2/Adding Summary Statistics/post.html",
       "/posts/ggplot2/Quickly highlighting ggplot columns/post.html",
       "/posts/ggplot2/Setting up a ggplot2 theme/post.html",
       "/posts/ggplot2/Quickest way to add text to ggplot/index.html"
@@ -26,14 +28,15 @@
   {
     "listing": "/archive.html",
     "items": [
+      "/posts/post-with-code/index.html",
       "/posts/Group Map Named List/index.html",
       "/posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html",
       "/posts/Super Helpful Very Little Tips and Tricks/post.html",
+      "/posts/ggplot2/Adding Summary Statistics/post.html",
       "/posts/ggplot2/Quickly highlighting ggplot columns/post.html",
       "/posts/ggplot2/Setting up a ggplot2 theme/post.html",
       "/posts/Capturing Warnings/index.html",
       "/posts/Quarto Tips/index.html",
-      "/posts/post-with-code/index.html",
       "/posts/r-workflow/index.html",
       "/posts/ggplot2/Quickest way to add text to ggplot/index.html"
     ]
