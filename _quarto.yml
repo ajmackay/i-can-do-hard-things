@@ -12,8 +12,7 @@ website:
         href: https://github.com/ajmackay
 format:
   html:
-    theme: cosmo
-    css: styles.css # change to theme.scss when ready to play with css
+    theme: theme.scss
 
 editor: visual
 

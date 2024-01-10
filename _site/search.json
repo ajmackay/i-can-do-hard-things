@@ -23,9 +23,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Aaron Mackay",
+    "title": "Figuring it Out by Aaron",
     "section": "",
-    "text": "These are some things I know about R and Data Science"
+    "text": "These are some things I know about R and Data Science - test"
   },
   {
     "objectID": "posts/r-workflow/index.html",
@@ -124,5 +124,12 @@
     "title": "Creating a ggplot2 theme",
     "section": "",
     "text": "Creating a ggplot2 theme is a cool thing to do."
+  },
+  {
+    "objectID": "posts/ggplot2/Adding Summary Statistics/post.html",
+    "href": "posts/ggplot2/Adding Summary Statistics/post.html",
+    "title": "Creating a ggplot2 theme",
+    "section": "",
+    "text": "if(FALSE) {\n\"https://stackoverflow.com/questions/15720545/use-stat-summary-to-annotate-plot-with-number-of-observations\"\n  \n}"
   }
 ]
