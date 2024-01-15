@@ -2,9 +2,7 @@
   "hash": "08f7a64f7f36e7527d4fd770385c20a7",
   "result": {
     "markdown": "---\ntitle: \"Creating a ggplot2 theme\"\ndate: \"2023-09-05\"\ncategories: [ggplot, dataviz]\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nif(FALSE) {\n\"https://stackoverflow.com/questions/15720545/use-stat-summary-to-annotate-plot-with-number-of-observations\"\n  \n}\n```\n:::\n",
-    "supporting": [
-      "post_files"
-    ],
+    "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

@@ -2,7 +2,7 @@
 title: "Figuring it Out by Aaron"
 image: profile.jpg
 about:
-  template: jolla
+  template: solana
   links:
     - icon: twitter
       text: Twitter
