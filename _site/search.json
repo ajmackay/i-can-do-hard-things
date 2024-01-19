@@ -18,7 +18,7 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "Series\n\nggplot2-series\nEverything I know about ggplot2.\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nCopying Windows File Paths\n\n\n\n\n\n\n\nworkflow\n\n\n\n\n\n\n\n\n\n\n\nJan 12, 2024\n\n\n\n\n\n\n\n\nNamed Lists from Group Maps\n\n\n\n\n\n\n\niteration\n\n\npurrr\n\n\nmap\n\n\n\n\n\n\n\n\n\n\n\nDec 12, 2023\n\n\n\n\n\n\n\n\nAccurately Viewing and Saving Plots using Camcorder\n\n\n\n\n\n\n\nggplot2\n\n\n\n\n\n\n\n\n\n\n\nNov 12, 2023\n\n\n\n\n\n\n\n\nSuper Helpful Very Little Tips and Tricks\n\n\n\n\n\n\n\nggplot\n\n\ndataviz\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nCreating a ggplot2 theme\n\n\n\n\n\n\n\nggplot\n\n\ndataviz\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nHighlighting In ggplot\n\n\n\n\n\n\n\nggplot\n\n\ndataviz\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nCreating a ggplot2 theme\n\n\n\n\n\n\n\nggplot\n\n\ndataviz\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nWoRkflow\n\n\n\n\n\n\n\nworkflow\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nAug 27, 2023\n\n\n\n\n\n\nNo matching items"
+    "text": "Series\n\nWoRkflow Tips: Ways to streamline your R workflow.\n\n\nGgplot2 series: Everything I know about ggplot2.\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nIntroduction to the Series\n\n\n\n\n\n\n\nworkflow\n\n\n\n\n\n\n\n\n\n\n\nJan 19, 2024\n\n\n\n\n\n\n\n\nCopying Windows File Paths\n\n\n\n\n\n\n\nworkflow\n\n\n\n\n\n\n\n\n\n\n\nJan 12, 2024\n\n\n\n\n\n\n\n\nNamed Lists from Group Maps\n\n\n\n\n\n\n\niteration\n\n\npurrr\n\n\nmap\n\n\n\n\n\n\n\n\n\n\n\nDec 12, 2023\n\n\n\n\n\n\n\n\nAccurately Viewing and Saving Plots using Camcorder\n\n\n\n\n\n\n\nggplot2\n\n\n\n\n\n\n\n\n\n\n\nNov 12, 2023\n\n\n\n\n\n\n\n\nSuper Helpful Very Little Tips and Tricks\n\n\n\n\n\n\n\nggplot\n\n\ndataviz\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nCreating a ggplot2 theme\n\n\n\n\n\n\n\nggplot\n\n\ndataviz\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nHighlighting In ggplot\n\n\n\n\n\n\n\nggplot\n\n\ndataviz\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nCreating a ggplot2 theme\n\n\n\n\n\n\n\nggplot\n\n\ndataviz\n\n\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nWoRkflow\n\n\n\n\n\n\n\nworkflow\n\n\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nAug 27, 2023\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -102,7 +102,7 @@
     "href": "archive.html",
     "title": "Archive",
     "section": "",
-    "text": "Copying Windows File Paths\n\n\n\n\n\n\n\n\n\nJan 12, 2024\n\n\n\n\n\n\n\n\nNamed Lists from Group Maps\n\n\n\n\n\n\n\n\n\nDec 12, 2023\n\n\n\n\n\n\n\n\nAccurately Viewing and Saving Plots using Camcorder\n\n\n\n\n\n\n\n\n\nNov 12, 2023\n\n\n\n\n\n\n\n\nSuper Helpful Very Little Tips and Tricks\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nCreating a ggplot2 theme\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nHighlighting In ggplot\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nCreating a ggplot2 theme\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nWoRkflow\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nAug 27, 2023\n\n\n\n\n\n\nNo matching items"
+    "text": "Introduction to the Series\n\n\n\n\n\n\n\n\n\nJan 19, 2024\n\n\n\n\n\n\n\n\nCopying Windows File Paths\n\n\n\n\n\n\n\n\n\nJan 12, 2024\n\n\n\n\n\n\n\n\nNamed Lists from Group Maps\n\n\n\n\n\n\n\n\n\nDec 12, 2023\n\n\n\n\n\n\n\n\nAccurately Viewing and Saving Plots using Camcorder\n\n\n\n\n\n\n\n\n\nNov 12, 2023\n\n\n\n\n\n\n\n\nSuper Helpful Very Little Tips and Tricks\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nCreating a ggplot2 theme\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nHighlighting In ggplot\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nCreating a ggplot2 theme\n\n\n\n\n\n\n\n\n\nSep 5, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nWoRkflow\n\n\n\n\n\n\n\n\n\nAug 30, 2023\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nAug 27, 2023\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/ggplot2/Quickest way to add text to ggplot/index.html",
@@ -131,5 +131,40 @@
     "title": "Creating a ggplot2 theme",
     "section": "",
     "text": "if(FALSE) {\n\"https://stackoverflow.com/questions/15720545/use-stat-summary-to-annotate-plot-with-number-of-observations\"\n  \n}"
+  },
+  {
+    "objectID": "series/ggplot-series.html",
+    "href": "series/ggplot-series.html",
+    "title": "Series: Everything I know about ggplot2",
+    "section": "",
+    "text": "No matching items"
+  },
+  {
+    "objectID": "posts/workflow/your first r package/first-package.html",
+    "href": "posts/workflow/your first r package/first-package.html",
+    "title": "What to do with your First R Package",
+    "section": "",
+    "text": "This is a test"
+  },
+  {
+    "objectID": "series/workflow-series.html",
+    "href": "series/workflow-series.html",
+    "title": "Series: WoRkflow",
+    "section": "",
+    "text": "No matching items"
+  },
+  {
+    "objectID": "workflow-series.html",
+    "href": "workflow-series.html",
+    "title": "Series: WoRkflow",
+    "section": "",
+    "text": "Introduction to the Series\n\n\n\n\n\n\n\n\n\n\n\n\nJan 19, 2024\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/workflow/intro to series/intro.html",
+    "href": "posts/workflow/intro to series/intro.html",
+    "title": "Introduction to the Series",
+    "section": "",
+    "text": "This series will focus on my thoughts and methods around structuring R studio projects with little side-quests on things like working with git and documentation.\nIn the five or so years that I have been using R, I have found there to be a surprising lack of resources on this topic (though two resources I have found helpful are this post by David Keyes - notably his take on how to write a README file, and this in depth guide on Reproducible Data Analysis and Reporting by Frank E Harrell Jr) and so I thought I would share what I have learnt (and am still learning!) along my R journey.\nThis series will likely be a perpetual work-in-progress as I continue to learn and refine my approach and I am very much open to feedback on improving the workflow presented here.\nIn brief, some of the topics I expect to cover in the coming weeks include:\n\nSetting up a project template\nHousing the project template in a package to be called when you want to start a new project\nA bit on Renv and reproducible environments\nA bit on saving and loading objects with qs"
   }
 ]

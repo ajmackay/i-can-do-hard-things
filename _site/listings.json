@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/workflow/intro to series/intro.html",
       "/posts/post-with-code/index.html",
       "/posts/Group Map Named List/index.html",
       "/posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html",
@@ -28,6 +29,7 @@
   {
     "listing": "/archive.html",
     "items": [
+      "/posts/workflow/intro to series/intro.html",
       "/posts/post-with-code/index.html",
       "/posts/Group Map Named List/index.html",
       "/posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html",
@@ -39,6 +41,20 @@
       "/posts/Quarto Tips/index.html",
       "/posts/r-workflow/index.html",
       "/posts/ggplot2/Quickest way to add text to ggplot/index.html"
+    ]
+  },
+  {
+    "listing": "/series/ggplot-series.html",
+    "items": []
+  },
+  {
+    "listing": "/series/workflow-series.html",
+    "items": []
+  },
+  {
+    "listing": "/workflow-series.html",
+    "items": [
+      "/posts/workflow/intro to series/intro.html"
     ]
   }
 ]

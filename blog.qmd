@@ -15,6 +15,6 @@ title-block-banner: true
 
 # Series
 
-#### [ggplot2-series](ggplot-series.html)
+#### [WoRkflow Tips](workflow-series.html): Ways to streamline your R workflow.
 
-Everything I know about ggplot2.
+#### [Ggplot2 series](ggplot-series.html): Everything I know about ggplot2.

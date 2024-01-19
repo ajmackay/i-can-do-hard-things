@@ -1,0 +1,5 @@
+---
+title: "Structuring your R Project"
+date: "2024-01-19"
+categories: [workflow]
+---

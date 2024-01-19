@@ -11,11 +11,12 @@ $gray-700: #495057 !default;
 $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
 $black:    #000 !default;
+$blue:     #0E79B2 !default;
 
 /* Colour of navigation bar */
-$primary: #FFEA9E!default;
+$primary: #fff3a2!default;
 
 $font-family-base: 'Source Sans Pro', 'Lato', 'Merriweather' !default; /* You put multiple down in case a computer doesn't have a particular font */
 $body-color:                $gray-700 !default;
 $headings-font-family:        'Calibri', 'Roboto', 'Montserrat' !default;
-
+$link-color:                $blue !default;

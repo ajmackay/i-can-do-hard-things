@@ -1,0 +1,18 @@
+---
+title: "Introduction to the Series"
+date: "2024-01-19"
+categories: [workflow]
+---
+
+This series will focus on my thoughts and methods around structuring R studio projects with little side-quests on things like working with git and documentation.
+
+In the five or so years that I have been using R, I have found there to be a surprising lack of resources on this topic (though two resources I have found helpful are [this post by David Keyes](https://rfortherestofus.com/2021/08/rstudio-project-structure/) - notably his take on how to write a README file, and this [in depth guide on Reproducible Data Analysis and Reporting by Frank E Harrell Jr](https://hbiostat.org/rflow/)) and so I thought I would share what I have learnt (and am still learning!) along my R journey.
+
+This series will likely be a perpetual work-in-progress as I continue to learn and refine my approach and I am very much open to feedback on improving the workflow presented here.
+
+In brief, some of the topics I expect to cover in the coming weeks include:
+
+1.  Setting up a project template
+2.  Housing the project template in a package to be called when you want to start a new project
+3.  A bit on <code>Renv</code> and reproducible environments
+4.  A bit on saving and loading objects with <code>qs</code>
