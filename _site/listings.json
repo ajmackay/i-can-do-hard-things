@@ -2,7 +2,10 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/NLP/Text Pre-Processing/text_pre-processing.html",
+      "/posts/NLP/Outline/outline.html",
       "/posts/workflow/intro to series/intro.html",
+      "/posts/workflow/project structure/project-structure.html",
       "/posts/post-with-code/index.html",
       "/posts/Group Map Named List/index.html",
       "/posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html",
@@ -29,7 +32,10 @@
   {
     "listing": "/archive.html",
     "items": [
+      "/posts/NLP/Text Pre-Processing/text_pre-processing.html",
+      "/posts/NLP/Outline/outline.html",
       "/posts/workflow/intro to series/intro.html",
+      "/posts/workflow/project structure/project-structure.html",
       "/posts/post-with-code/index.html",
       "/posts/Group Map Named List/index.html",
       "/posts/ggplot2/Accurately Viewing and Saving Plots with Camcorder/index.html",
@@ -54,7 +60,8 @@
   {
     "listing": "/workflow-series.html",
     "items": [
-      "/posts/workflow/intro to series/intro.html"
+      "/posts/workflow/intro to series/intro.html",
+      "/posts/workflow/project structure/project-structure.html"
     ]
   }
 ]

@@ -1,0 +1,94 @@
+---
+title: "NLP Outline"
+date: "2024-01-19"
+categories: [NLP]
+---
+
+Rather than try and "learn everything I can" about Natural Language Processing, I figured the better method would be to first outline my goals in learning NLP. From here, I can design a program that will enable me to achieve these goals as efficiently as possible.
+
+In short then, my main goal for learning NLP is to be able to extract key themes from a collection of documents (known in NLP-speak as a "corpus"). I want to be able to input a corpus into a model, which will then identify and extract themes or topics, both across the corpus as a whole and within documents in the corpus. These themes should be quantified in terms of their importance.
+
+A quick bit of research has indicated that **Topic Modeling** is the technique that I need to become familiar with.
+
+Topic modeling is a statistical model that identifies the unique themes (or "topics") that are present in a collection of documents. These topics are identified and their importance quantified by the number of similar words that pertain to that topic in a document. The end result is an extraction of the topics in a corpus as well as the balance of topic's within each document.
+
+To understand and utilise topic modeling, there are number of pre-requisite skills that I will need to understand first.
+
+Throughout this series I will be working with the New Testament from the King James bible, from the package <code>scripturRs</code>.
+
+# Syllabus:
+
+```{r}
+library(DiagrammeR)
+#| echo: false
+grViz("
+  digraph {
+  layout = dot
+  node [shape = rectangle,style=filled,fixedsize=False]
+  edge[color=grey,arrowhead=vee]
+  A[label = 'Corpus']
+  B[label = 'Pre-Processing']
+  C[label = 'Tokenisation']
+  D[label = 'Stop Word Removal']
+  E[label = 'Stemming/Lemmatisation']
+
+  F[label = 'Text Representation']
+  G[label = 'Bag-of-Words']
+  J[label = 'Contextual Embeddings']
+  H[label = 'TF-IDF']
+  I[label = 'Word Embeddings']
+
+  K[label = 'Topic Modeling']
+  L[label = 'LDA']
+
+  A->B
+  B->C
+  B->D
+  B->E
+
+  rank=same {B->F}
+  F->G
+  F->H
+  F->I
+  G->J
+
+  rank=same {F->K}
+  K->L
+
+  }
+   ")
+```
+
+## Text Pre-Processing
+
+Clean and pre-process text data to remove noise, irrelevant information and standardise the format for further processing and analysis.
+
+**Learning Outcomes:**
+
+-   Tokenisation
+
+-   Stopword removal
+
+-   Stemming
+
+-   Lemmatisation
+
+## Text Representation
+
+After pre-processing, the text must be converted into a format that will allow for more complex analysis. This usually involves attributing a quantitative value to the text (either specific words, words within documents or documents within a corpus).
+
+**Learning Outcomes:**
+
+-   Bad-of-words model
+
+-   Term Frequency - Inverse Document Frequency (TF-IDF)
+
+-   Word embeddings (word2vec, GloVe)
+
+-   Contextual embeddings (BERT, GPT)
+
+## Topic Modeling
+
+Once the text has been pre-processed and is now in a format that computers and statistical models will understand, we can apply these models to extract the topics that are contained within our text.
+
+The most popular model for achieving this seems to be **Latent Dirichlet Allocation (LDA)**.

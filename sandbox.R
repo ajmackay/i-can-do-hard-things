@@ -1,3 +1,45 @@
+library(DiagrammeR)
+
+grViz("
+      graph {
+      rankdir=LR;
+      hello -- world;
+      }")
+
+
+
+mermaid("graph LR;
+        A[Corpus]-->B{Pre-Processing};
+
+        B-->C(Tokenisation);
+        B-->D(Stop Word Removal);
+        B-->E(Stemming/Lemmatisation);
+
+        F{Text Representation};
+
+
+
+        F-->G[Bag-of-words]
+        F-->H[TF-IDF]
+        F-->I[Word Embeddings]
+        G-->J[Contextual Embeddings]"
+        )
+
+create_graph() %>%
+  add_node(label = "Corpus") %>%
+  add_node(label = "Pre-Processing") %>%
+  add_edge(from = 1, to = 2) %>% render_graph()
+
+
+# Create a sequence diagram
+DiagrammeR("graph LR;
+           A(Rounded)-->B[Squared];
+           B-->C{A Decision};
+           C-->D[Square One];
+           C-->E[Square Two];"
+)
+
+
 # World Bank Data ----
 library(wbstats)
 library(tidyverse)

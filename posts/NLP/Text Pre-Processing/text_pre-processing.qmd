@@ -1,0 +1,94 @@
+---
+title: "Text Pre-Processing"
+date: "2024-03-26"
+categories: [NLP]
+editor_options: 
+  chunk_output_type: console
+footnotes-hover: true
+---
+
+```{r}
+library(DiagrammeR)
+#| include: false
+grViz("
+  digraph {
+  layout = dot
+  node [shape = rectangle,style=filled,fixedsize=False]
+  edge[color=grey,arrowhead=vee]
+  A[label = 'Corpus']
+  B[label = 'Pre-Processing']
+  C[label = 'Tokenisation']
+  D[label = 'Stop Word Removal']
+  E[label = 'Stemming/Lemmatisation']
+
+  A->B
+  B->C
+  B->D
+  B->E
+
+
+  }
+   ")
+```
+
+Text (like all real-world data) comes in a messy format. Whether that text be a collection of blog posts, newspaper articles, a book and so on, the text must be prepared and organised in a format that will make it more efficient to apply further techniques to it.
+
+In pre-processing text, there are a few key steps including:
+
+1.  **Tokenisation:** Splitting text into individual tokens[^1]
+2.  **Stop Word Removal:** *Stop Words* are words that are considered insignificant to understanding the meaning of a sentence, but are required to help form a sentence. There is no universal list of stop words, however common stop words include "a", "but", "an", "it", "the", "that" and so on.
+3.  **Stemming or Lemmatisation:** Both stemming and lemmatisation are methods to reduce words down to their base or root. For example, "fishing", "fishes", and "fished" will all become just "fish"*.* \<u\>Stemming\</u\> reduces words to their stem just by looking at the suffix of the word, while <u>lemmatisation</u> reduces words to their base or "lemma" in ths case by considering the word and the context in which it appears. For example in stemming, the word "caring" would be reduced to the word "car", however in lemmatisation it would be reduced to "care" (the correct form).
+
+[^1]: A token is the smallest attribute that you are interested in (e.g., characters, words, sentences)
+
+## Load Packages and Data
+
+Much of our pre-processing can be completed with the <code>tidytext</code> package.
+
+```{r}
+#| label: load-packages
+
+library(tidytext)
+library(scriptuRs)
+library(textstem)
+```
+
+## Text Pre-Processing
+
+Clean and pre-process text data to remove noise, irrelevant information and standardise the format for further processing and analysis.
+
+**Learning Outcomes:**
+
+-   Tokenisation
+
+-   Stopword removal
+
+-   Stemming
+
+-   Lemmatisation
+
+## Text Representation
+
+\[Text here\]
+
+**Learning Outcomes:**
+
+-   Bad-of-words model
+
+-   Term Frequency - Inverse Document Frequency (TF-IDF)
+
+-   Word embeddings (word2vec, GloVe)
+
+-   Contextual embeddings (BERT, GPT)
+
+## Topic Modeling
+
+Identify themes or topics present in a collection of documents
+
+**Learning Outcomes:**
+
+-   Latent Dirichlet Allocation (LDA)
+
+### Topic Modeling
+
+**Learning Outcomes:** Identify and extract the underlying themes or topics present in a corpus.

@@ -1,0 +1,18 @@
+{
+  "hash": "f86d81505f25f3f5cd2d64f39898c3cb",
+  "result": {
+    "markdown": "---\ntitle: \"Text Pre-Processing\"\ndate: \"2024-03-26\"\ncategories: [NLP]\neditor_options: \n  chunk_output_type: console\nfootnotes-hover: true\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(DiagrammeR)\n#| echo: false\ngrViz(\"\n  digraph {\n  layout = dot\n  node [shape = rectangle,style=filled,fixedsize=False]\n  edge[color=grey,arrowhead=vee]\n  A[label = 'Corpus']\n  B[label = 'Pre-Processing']\n  C[label = 'Tokenisation']\n  D[label = 'Stop Word Removal']\n  E[label = 'Stemming/Lemmatisation']\n\n  A->B\n  B->C\n  B->D\n  B->E\n\n\n  }\n   \")\n```\n\n::: {.cell-output-display}\n```{=html}\n<div class=\"grViz html-widget html-fill-item\" id=\"htmlwidget-84b8a25801cd9da40dd5\" style=\"width:100%;height:464px;\"></div>\n<script type=\"application/json\" data-for=\"htmlwidget-84b8a25801cd9da40dd5\">{\"x\":{\"diagram\":\"\\n  digraph {\\n  layout = dot\\n  node [shape = rectangle,style=filled,fixedsize=False]\\n  edge[color=grey,arrowhead=vee]\\n  A[label = \\\"Corpus\\\"]\\n  B[label = \\\"Pre-Processing\\\"]\\n  C[label = \\\"Tokenisation\\\"]\\n  D[label = \\\"Stop Word Removal\\\"]\\n  E[label = \\\"Stemming/Lemmatisation\\\"]\\n\\n  A->B\\n  B->C\\n  B->D\\n  B->E\\n\\n\\n  }\\n   \",\"config\":{\"engine\":\"dot\",\"options\":null}},\"evals\":[],\"jsHooks\":[]}</script>\n```\n:::\n:::\n\n\nText (like all real-world data) comes in a messy format. Whether that text be a collection of blog posts, newspaper articles, a book and so on, the text must be prepared and organised in a format that will make it more efficient to apply further techniques to it.\n\nIn pre-processing text, there are a few key steps including:\n\n1.  **Tokenisation:** Splitting text into individual tokens[^1]\n\n[^1]: A token is the smallest attribute that you are interested in (e.g., characters, words, sentences)\n\n## Load Packages and Data\n\nMuch of our pre-processing can be completed with the <code>tidytext</code> package.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidytext)\nlibrary(scriptuRs)\n```\n:::\n\n\n## Text Pre-Processing\n\nClean and pre-process text data to remove noise, irrelevant information and standardise the format for further processing and analysis.\n\n**Learning Outcomes:**\n\n-   Tokenisation\n\n-   Stopword removal\n\n-   Stemming\n\n-   Lemmatisation\n\n## Text Representation\n\n\\[Text here\\]\n\n**Learning Outcomes:**\n\n-   Bad-of-words model\n\n-   Term Frequency - Inverse Document Frequency (TF-IDF)\n\n-   Word embeddings (word2vec, GloVe)\n\n-   Contextual embeddings (BERT, GPT)\n\n## Topic Modeling\n\nIdentify themes or topics present in a collection of documents\n\n**Learning Outcomes:**\n\n-   Latent Dirichlet Allocation (LDA)\n\n### Topic Modeling\n\n**Learning Outcomes:** Identify and extract the underlying themes or topics present in a corpus.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<script src=\"../../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js\"></script>\r\n<script src=\"../../../site_libs/viz-1.8.2/viz.js\"></script>\r\n<link href=\"../../../site_libs/DiagrammeR-styles-0.2/styles.css\" rel=\"stylesheet\" />\r\n<script src=\"../../../site_libs/grViz-binding-1.0.11/grViz.js\"></script>\r\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
