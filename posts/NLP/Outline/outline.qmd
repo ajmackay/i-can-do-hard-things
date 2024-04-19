@@ -21,6 +21,7 @@ Throughout this series I will be working with the New Testament from the King Ja
 ```{r}
 library(DiagrammeR)
 #| echo: false
+#| include: false
 grViz("
   digraph {
   layout = dot

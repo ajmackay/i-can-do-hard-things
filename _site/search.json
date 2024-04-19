@@ -170,30 +170,30 @@
   {
     "objectID": "posts/NLP/Outline/outline.html",
     "href": "posts/NLP/Outline/outline.html",
-    "title": "NLP OUtline",
+    "title": "NLP Outline",
     "section": "",
-    "text": "Rather than try and “learn everything I can” about Natural Language Processing, I figured the better method would be to first outline my goals in learning NLP. From here, I can design a program that will enable me to achieve these goals as efficiently as possible.\nIn short then, my main goal for learning NLP is to be able to extract key themes from a collection of documents (known in NLP-speak as a “corpus”). I want to be able to input a corpus into a model, which will then identify and extract themes or topics, both across the corpus as a whole and within documents in the corpus. These themes should be quantified in terms of their importance.\nA quick bit of research has indicated that Topic Modeling is the technique that I need to become familiar with.\nTopic modeling is a statistical model that identifies the unique themes (or “topics”) that are present in a collection of documents. These topics are identified and their importance quantified by the number of similar words that pertain to that topic in a document. The end result is an extraction of the topics in a corpus as well as the balance of topic’s within each document.\nTo understand and utilise topic modeling, there are number of pre-requisite skills that I will need to understand first."
+    "text": "Rather than try and “learn everything I can” about Natural Language Processing, I figured the better method would be to first outline my goals in learning NLP. From here, I can design a program that will enable me to achieve these goals as efficiently as possible.\nIn short then, my main goal for learning NLP is to be able to extract key themes from a collection of documents (known in NLP-speak as a “corpus”). I want to be able to input a corpus into a model, which will then identify and extract themes or topics, both across the corpus as a whole and within documents in the corpus. These themes should be quantified in terms of their importance.\nA quick bit of research has indicated that Topic Modeling is the technique that I need to become familiar with.\nTopic modeling is a statistical model that identifies the unique themes (or “topics”) that are present in a collection of documents. These topics are identified and their importance quantified by the number of similar words that pertain to that topic in a document. The end result is an extraction of the topics in a corpus as well as the balance of topic’s within each document.\nTo understand and utilise topic modeling, there are number of pre-requisite skills that I will need to understand first.\nThroughout this series I will be working with the New Testament from the King James bible, from the package scripturRs."
   },
   {
     "objectID": "posts/NLP/Outline/outline.html#text-pre-processing",
     "href": "posts/NLP/Outline/outline.html#text-pre-processing",
-    "title": "NLP OUtline",
+    "title": "NLP Outline",
     "section": "Text Pre-Processing",
     "text": "Text Pre-Processing\nClean and pre-process text data to remove noise, irrelevant information and standardise the format for further processing and analysis.\nLearning Outcomes:\n\nTokenisation\nStopword removal\nStemming\nLemmatisation"
   },
   {
     "objectID": "posts/NLP/Outline/outline.html#text-representation",
     "href": "posts/NLP/Outline/outline.html#text-representation",
-    "title": "NLP OUtline",
+    "title": "NLP Outline",
     "section": "Text Representation",
-    "text": "Text Representation\n[Text here]\nLearning Outcomes:\n\nBad-of-words model\nTerm Frequency - Inverse Document Frequency (TF-IDF)\nWord embeddings (word2vec, GloVe)\nContextual embeddings (BERT, GPT)"
+    "text": "Text Representation\nAfter pre-processing, the text must be converted into a format that will allow for more complex analysis. This usually involves attributing a quantitative value to the text (either specific words, words within documents or documents within a corpus).\nLearning Outcomes:\n\nBad-of-words model\nTerm Frequency - Inverse Document Frequency (TF-IDF)\nWord embeddings (word2vec, GloVe)\nContextual embeddings (BERT, GPT)"
   },
   {
     "objectID": "posts/NLP/Outline/outline.html#topic-modeling",
     "href": "posts/NLP/Outline/outline.html#topic-modeling",
-    "title": "NLP OUtline",
+    "title": "NLP Outline",
     "section": "Topic Modeling",
-    "text": "Topic Modeling\nIdentify themes or topics present in a collection of documents\nLearning Outcomes:\n\nLatent Dirichlet Allocation (LDA)\n\n\nTopic Modeling\nLearning Outcomes: Identify and extract the underlying themes or topics present in a corpus."
+    "text": "Topic Modeling\nOnce the text has been pre-processed and is now in a format that computers and statistical models will understand, we can apply these models to extract the topics that are contained within our text.\nThe most popular model for achieving this seems to be Latent Dirichlet Allocation (LDA)."
   },
   {
     "objectID": "posts/NLP/Text Pre-Processing/text_pre-processing.html",

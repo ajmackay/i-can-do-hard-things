@@ -140,7 +140,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">NLP OUtline</h1>
+      <h1 class="title">NLP Outline</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">NLP</div>
               </div>
@@ -183,11 +183,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A quick bit of research has indicated that <strong>Topic Modeling</strong> is the technique that I need to become familiar with.</p>
 <p>Topic modeling is a statistical model that identifies the unique themes (or “topics”) that are present in a collection of documents. These topics are identified and their importance quantified by the number of similar words that pertain to that topic in a document. The end result is an extraction of the topics in a corpus as well as the balance of topic’s within each document.</p>
 <p>To understand and utilise topic modeling, there are number of pre-requisite skills that I will need to understand first.</p>
+<p>Throughout this series I will be working with the New Testament from the King James bible, from the package <code>scripturRs</code>.</p>
 <section id="syllabus" class="level1">
 <h1>Syllabus:</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DiagrammeR)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: fenced</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grViz</span>(<span class="st">"</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">  digraph {</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">  layout = dot</span></span>
@@ -225,8 +226,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="st">   "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-7fe87cf8dfb9d1f7a4b1" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-7fe87cf8dfb9d1f7a4b1">{"x":{"diagram":"\n  digraph {\n  layout = dot\n  node [shape = rectangle,style=filled,fixedsize=False]\n  edge[color=grey,arrowhead=vee]\n  A[label = \"Corpus\"]\n  B[label = \"Pre-Processing\"]\n  C[label = \"Tokenisation\"]\n  D[label = \"Stop Word Removal\"]\n  E[label = \"Stemming/Lemmatisation\"]\n\n  F[label = \"Text Representation\"]\n  G[label = \"Bag-of-Words\"]\n  J[label = \"Contextual Embeddings\"]\n  H[label = \"TF-IDF\"]\n  I[label = \"Word Embeddings\"]\n\n  K[label = \"Topic Modeling\"]\n  L[label = \"LDA\"]\n\n  A->B\n  B->C\n  B->D\n  B->E\n\n  rank=same {B->F}\n  F->G\n  F->H\n  F->I\n  G->J\n\n  rank=same {F->K}\n  K->L\n\n  }\n   ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-bb22cf8adfa22e48edb3" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-bb22cf8adfa22e48edb3">{"x":{"diagram":"\n  digraph {\n  layout = dot\n  node [shape = rectangle,style=filled,fixedsize=False]\n  edge[color=grey,arrowhead=vee]\n  A[label = \"Corpus\"]\n  B[label = \"Pre-Processing\"]\n  C[label = \"Tokenisation\"]\n  D[label = \"Stop Word Removal\"]\n  E[label = \"Stemming/Lemmatisation\"]\n\n  F[label = \"Text Representation\"]\n  G[label = \"Bag-of-Words\"]\n  J[label = \"Contextual Embeddings\"]\n  H[label = \"TF-IDF\"]\n  I[label = \"Word Embeddings\"]\n\n  K[label = \"Topic Modeling\"]\n  L[label = \"LDA\"]\n\n  A->B\n  B->C\n  B->D\n  B->E\n\n  rank=same {B->F}\n  F->G\n  F->H\n  F->I\n  G->J\n\n  rank=same {F->K}\n  K->L\n\n  }\n   ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <section id="text-pre-processing" class="level2">
@@ -240,12 +241,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Lemmatisation</p></li>
 </ul>
 </section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
-</section>
 <section id="text-representation" class="level2">
 <h2 class="anchored" data-anchor-id="text-representation">Text Representation</h2>
-<p>[Text here]</p>
+<p>After pre-processing, the text must be converted into a format that will allow for more complex analysis. This usually involves attributing a quantitative value to the text (either specific words, words within documents or documents within a corpus).</p>
 <p><strong>Learning Outcomes:</strong></p>
 <ul>
 <li><p>Bad-of-words model</p></li>
@@ -256,17 +254,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="topic-modeling" class="level2">
 <h2 class="anchored" data-anchor-id="topic-modeling">Topic Modeling</h2>
-<p>Identify themes or topics present in a collection of documents</p>
-<p><strong>Learning Outcomes:</strong></p>
-<ul>
-<li>Latent Dirichlet Allocation (LDA)</li>
-</ul>
-<section id="topic-modeling-1" class="level3">
-<h3 class="anchored" data-anchor-id="topic-modeling-1">Topic Modeling</h3>
-<p><strong>Learning Outcomes:</strong> Identify and extract the underlying themes or topics present in a corpus.</p>
+<p>Once the text has been pre-processed and is now in a format that computers and statistical models will understand, we can apply these models to extract the topics that are contained within our text.</p>
+<p>The most popular model for achieving this seems to be <strong>Latent Dirichlet Allocation (LDA)</strong>.</p>
 
 
-</section>
 </section>
 </section>
 

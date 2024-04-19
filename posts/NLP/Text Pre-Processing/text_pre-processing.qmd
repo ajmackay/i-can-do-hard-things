@@ -31,7 +31,7 @@ grViz("
    ")
 ```
 
-Text (like all real-world data) comes in a messy format. Whether that text be a collection of blog posts, newspaper articles, a book and so on, the text must be prepared and organised in a format that will make it more efficient to apply further techniques to it.
+Text (like all real-world data) comes in a messy format. Whether that text be a collection of blog posts, newspaper articles, a book, the text must be prepared and organised in a format that will make it more efficient to apply further techniques to it.
 
 In pre-processing text, there are a few key steps including:
 
@@ -47,10 +47,21 @@ Much of our pre-processing can be completed with the <code>tidytext</code> packa
 
 ```{r}
 #| label: load-packages
+#| echo: false
 
 library(tidytext)
-library(scriptuRs)
 library(textstem)
+```
+
+The data will will use is the new testament of the King James Bible
+
+```{r}
+#| label: data-clean
+#| echo: false
+
+newtest_df <- scriptuRs::new_testament %>% tibble()
+matthew_df <- newtest_df %>% 
+  filter(book_title == "Matthew")
 ```
 
 ## Text Pre-Processing
@@ -66,6 +77,66 @@ Clean and pre-process text data to remove noise, irrelevant information and stan
 -   Stemming
 
 -   Lemmatisation
+
+### Tokenisation
+
+Tokenisation...
+
+```{r}
+#| label: tokenisation
+
+token_count <- matthew_df %>% 
+  unnest_tokens(output = "word",
+                input = text,
+                token = "words") %>% 
+  count(word, sort = TRUE)
+
+head(token_count)
+
+```
+
+As the output above shows, the most common words are words that aren't very informative. Words such as "and", "the", "of" don't provide us with any meaning. These are the words known as "stop words" and before we can properly tokenise our data, we need to remove these kinds of words.
+
+### Stop Word Removal
+
+We use the anti_join function and the stop_words dataset from the tidytext package
+
+```{r}
+token_count <- matthew_df %>% 
+  unnest_tokens(output = "word",
+                input = text,
+                token = "words") %>% 
+  anti_join(stop_words) %>% 
+  count(word, sort = TRUE)
+
+head(token_count, 10)
+```
+
+And now we get a much greater understanding as to what themes this text contains. No surprise here that this text.
+
+### Stemming
+
+<code>wordStem()</code> from the {SnowballC} package.
+
+### Lemmatisation
+
+-   {udpipe} package - actually can use lemmatize_words from tidytext
+
+```{r}
+# library(udpipe)
+
+# udmodel <- udpipe::udpipe_download_model(language = "english")
+
+matthew_token <- matthew_df %>% 
+    unnest_tokens(output = "word",
+                input = text,
+                token = "words") %>% 
+  anti_join(stop_words)
+
+matthew_token %>% 
+  mutate(lemma = lemmatize_words(word)) %>% 
+  count(lemma, sort = TRUE)
+```
 
 ## Text Representation
 

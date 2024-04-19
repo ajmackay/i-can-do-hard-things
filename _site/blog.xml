@@ -151,7 +151,7 @@ font-style: inherit;">library</span>(scriptuRs)</span></code></pre></div>
   <pubDate>Mon, 25 Mar 2024 13:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>NLP OUtline</title>
+  <title>NLP Outline</title>
   <dc:creator>Aaron </dc:creator>
   <link>https://amackay.netlify.app/posts/NLP/Outline/outline.html</link>
   <description><![CDATA[ 
@@ -164,6 +164,7 @@ font-style: inherit;">library</span>(scriptuRs)</span></code></pre></div>
 <p>A quick bit of research has indicated that <strong>Topic Modeling</strong> is the technique that I need to become familiar with.</p>
 <p>Topic modeling is a statistical model that identifies the unique themes (or “topics”) that are present in a collection of documents. These topics are identified and their importance quantified by the number of similar words that pertain to that topic in a document. The end result is an extraction of the topics in a corpus as well as the balance of topic’s within each document.</p>
 <p>To understand and utilise topic modeling, there are number of pre-requisite skills that I will need to understand first.</p>
+<p>Throughout this series I will be working with the New Testament from the King James bible, from the package <code>scripturRs</code>.</p>
 <section id="syllabus" class="level1">
 <h1>Syllabus:</h1>
 <div class="cell">
@@ -172,7 +173,7 @@ background-color: null;
 font-style: inherit;">library</span>(DiagrammeR)</span>
 <span id="cb1-2"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">#| echo: fenced</span></span>
+font-style: inherit;">#| echo: false</span></span>
 <span id="cb1-3"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">grViz</span>(<span class="st" style="color: #20794D;
@@ -272,8 +273,8 @@ font-style: inherit;">  }</span></span>
 background-color: null;
 font-style: inherit;">   "</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-7fe87cf8dfb9d1f7a4b1" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-7fe87cf8dfb9d1f7a4b1">{"x":{"diagram":"\n  digraph {\n  layout = dot\n  node [shape = rectangle,style=filled,fixedsize=False]\n  edge[color=grey,arrowhead=vee]\n  A[label = \"Corpus\"]\n  B[label = \"Pre-Processing\"]\n  C[label = \"Tokenisation\"]\n  D[label = \"Stop Word Removal\"]\n  E[label = \"Stemming/Lemmatisation\"]\n\n  F[label = \"Text Representation\"]\n  G[label = \"Bag-of-Words\"]\n  J[label = \"Contextual Embeddings\"]\n  H[label = \"TF-IDF\"]\n  I[label = \"Word Embeddings\"]\n\n  K[label = \"Topic Modeling\"]\n  L[label = \"LDA\"]\n\n  A->B\n  B->C\n  B->D\n  B->E\n\n  rank=same {B->F}\n  F->G\n  F->H\n  F->I\n  G->J\n\n  rank=same {F->K}\n  K->L\n\n  }\n   ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-bb22cf8adfa22e48edb3" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-bb22cf8adfa22e48edb3">{"x":{"diagram":"\n  digraph {\n  layout = dot\n  node [shape = rectangle,style=filled,fixedsize=False]\n  edge[color=grey,arrowhead=vee]\n  A[label = \"Corpus\"]\n  B[label = \"Pre-Processing\"]\n  C[label = \"Tokenisation\"]\n  D[label = \"Stop Word Removal\"]\n  E[label = \"Stemming/Lemmatisation\"]\n\n  F[label = \"Text Representation\"]\n  G[label = \"Bag-of-Words\"]\n  J[label = \"Contextual Embeddings\"]\n  H[label = \"TF-IDF\"]\n  I[label = \"Word Embeddings\"]\n\n  K[label = \"Topic Modeling\"]\n  L[label = \"LDA\"]\n\n  A->B\n  B->C\n  B->D\n  B->E\n\n  rank=same {B->F}\n  F->G\n  F->H\n  F->I\n  G->J\n\n  rank=same {F->K}\n  K->L\n\n  }\n   ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <section id="text-pre-processing" class="level2">
@@ -287,12 +288,9 @@ font-style: inherit;">   "</span>)</span></code></pre></div>
 <li><p>Lemmatisation</p></li>
 </ul>
 </section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
-</section>
 <section id="text-representation" class="level2">
 <h2 class="anchored" data-anchor-id="text-representation">Text Representation</h2>
-<p>[Text here]</p>
+<p>After pre-processing, the text must be converted into a format that will allow for more complex analysis. This usually involves attributing a quantitative value to the text (either specific words, words within documents or documents within a corpus).</p>
 <p><strong>Learning Outcomes:</strong></p>
 <ul>
 <li><p>Bad-of-words model</p></li>
@@ -303,17 +301,10 @@ font-style: inherit;">   "</span>)</span></code></pre></div>
 </section>
 <section id="topic-modeling" class="level2">
 <h2 class="anchored" data-anchor-id="topic-modeling">Topic Modeling</h2>
-<p>Identify themes or topics present in a collection of documents</p>
-<p><strong>Learning Outcomes:</strong></p>
-<ul>
-<li>Latent Dirichlet Allocation (LDA)</li>
-</ul>
-<section id="topic-modeling-1" class="level3">
-<h3 class="anchored" data-anchor-id="topic-modeling-1">Topic Modeling</h3>
-<p><strong>Learning Outcomes:</strong> Identify and extract the underlying themes or topics present in a corpus.</p>
+<p>Once the text has been pre-processed and is now in a format that computers and statistical models will understand, we can apply these models to extract the topics that are contained within our text.</p>
+<p>The most popular model for achieving this seems to be <strong>Latent Dirichlet Allocation (LDA)</strong>.</p>
 
 
-</section>
 </section>
 </section>
 
