@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://amackay.netlify.app/blog.html</loc>
-    <lastmod>2024-04-19T06:27:01.344Z</lastmod>
+    <lastmod>2024-04-26T03:04:23.273Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/index.html</loc>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://amackay.netlify.app/archive.html</loc>
-    <lastmod>2024-04-19T06:27:02.172Z</lastmod>
+    <lastmod>2024-04-26T03:04:24.182Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/ggplot2/Quickest way to add text to ggplot/index.html</loc>
@@ -66,7 +66,7 @@
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/NLP/Outline/outline.html</loc>
-    <lastmod>2024-04-19T06:27:05.248Z</lastmod>
+    <lastmod>2024-04-26T02:59:59.243Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/workflow/project structure/project-structure.html</loc>
@@ -74,6 +74,10 @@
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/NLP/Text Pre-Processing/text_pre-processing.html</loc>
-    <lastmod>2024-04-19T06:27:00.177Z</lastmod>
+    <lastmod>2024-04-26T03:04:25.613Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amackay.netlify.app/posts/r-workflow/index.html</loc>
+    <lastmod>2024-04-26T02:59:59.800Z</lastmod>
   </url>
 </urlset>

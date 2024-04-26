@@ -8,6 +8,10 @@ image: "image.jpg"
 
 Getting the right workflow in R is hard.
 
+-   README.md
+
+-   TODO.md
+
 ```{r}
 1 + 1
 ```

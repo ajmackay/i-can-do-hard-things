@@ -1,3 +1,9 @@
+matthew_lemma_df %>%
+  filter(str_detect(word, "gather")) %>%
+  count(lemma)
+
+
+
 library(DiagrammeR)
 
 grViz("

@@ -1,0 +1,68 @@
+---
+title: "Text Representation"
+date: "2024-03-26"
+categories: [NLP]
+editor_options: 
+  chunk_output_type: console
+footnotes-hover: true
+execute: 
+  warning: false
+---
+
+```{r}
+#| echo: false
+library(DiagrammeR)
+grViz("
+  digraph {
+  layout = dot
+  node [shape = rectangle,style=filled,fixedsize=False]
+  edge[color=grey,arrowhead=vee]
+  A[label = 'Pre-Processed Text']
+  B[label = 'Text Representation']
+  C[label = 'Bag-of-Words']
+  D[label = 'TF-IDF']
+  E[label = 'Word Embeddings']
+  F[label = 'Contextual Embeddings']
+
+  A->B
+  B->C
+  C->F
+  B->D
+  B->E
+
+
+  }
+   ")
+```
+
+In the previous part of this series, we took a corpus of text (in this case the book of Matthew from the King James Bible) and we applied pre-processing techniques to it to extract the key words in each verse of the book.
+
+In this section we will look at different ways to represent text to then be used in various Machine Learning models. The reason we do this is because these models can process text if it is linked with a numerical value. The way that we end up representing text will be contingent on the type of model that we want to use, which is dependent of course on the whole purpose of our NLP venture in the first place.
+
+## Text Representation
+
+\[Text here\]
+
+**Learning Outcomes:**
+
+-   Bad-of-words model
+
+-   Term Frequency - Inverse Document Frequency (TF-IDF)
+
+-   Word embeddings (word2vec, GloVe)
+
+-   Contextual embeddings (BERT, GPT)
+
+## Bag-of-words
+
+## Topic Modeling
+
+Identify themes or topics present in a collection of documents
+
+**Learning Outcomes:**
+
+-   Latent Dirichlet Allocation (LDA)
+
+### Topic Modeling
+
+**Learning Outcomes:** Identify and extract the underlying themes or topics present in a corpus.

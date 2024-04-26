@@ -5,11 +5,13 @@ categories: [NLP]
 editor_options: 
   chunk_output_type: console
 footnotes-hover: true
+execute: 
+  warning: false
 ---
 
 ```{r}
+#| echo: false
 library(DiagrammeR)
-#| include: false
 grViz("
   digraph {
   layout = dot
@@ -31,59 +33,54 @@ grViz("
    ")
 ```
 
-Text (like all real-world data) comes in a messy format. Whether that text be a collection of blog posts, newspaper articles, a book, the text must be prepared and organised in a format that will make it more efficient to apply further techniques to it.
+Text, like all data, comes in a messy format. Whether that text be a collection of blog posts, newspaper articles, a book, the text must be prepared and organised in a format that will make it more efficient to apply further techniques to it.
 
-In pre-processing text, there are a few key steps including:
+In this section we cover the key steps involved in text pre-processing:
 
-1.  **Tokenisation:** Splitting text into individual tokens[^1]
+1.  **Tokenisation:** Splitting text into individual tokens. A "token" is the smallest attribute that you are interested in. Usually it is a word, however it could be a character, or sentence and beyond.
 2.  **Stop Word Removal:** *Stop Words* are words that are considered insignificant to understanding the meaning of a sentence, but are required to help form a sentence. There is no universal list of stop words, however common stop words include "a", "but", "an", "it", "the", "that" and so on.
-3.  **Stemming or Lemmatisation:** Both stemming and lemmatisation are methods to reduce words down to their base or root. For example, "fishing", "fishes", and "fished" will all become just "fish"*.* \<u\>Stemming\</u\> reduces words to their stem just by looking at the suffix of the word, while <u>lemmatisation</u> reduces words to their base or "lemma" in ths case by considering the word and the context in which it appears. For example in stemming, the word "caring" would be reduced to the word "car", however in lemmatisation it would be reduced to "care" (the correct form).
+3.  **Stemming or Lemmatisation:** Both stemming and lemmatisation are methods to reduce words down to their base or root. For example, "fishing", "fishes", and "fished" will all become just "fish"*.* \<u\>Stemming\</u\> reduces words to their stem just by looking at the suffix of the word, while <u>lemmatisation</u> reduces words to their base or "lemma" by considering the word and the context in which it appears. For example in stemming, the word "caring" would be reduced to the word "car", however in lemmatisation it would be reduced to "care" (the correct form). Given its increased accuracy, Lemmatisation is the tool we shall use.
 
-[^1]: A token is the smallest attribute that you are interested in (e.g., characters, words, sentences)
+## Packages and Data
 
-## Load Packages and Data
-
-Much of our pre-processing can be completed with the <code>tidytext</code> package.
+Text pre-processing will be done with the **{tidytext}** and **{textstem}** packages. The data-set we are using for text pre-processing is the book of Matthew from the New Testament of the King James Bible. We will access this through the <code>new_testament()</code> function in the **{scriptuRs}** package.
 
 ```{r}
 #| label: load-packages
-#| echo: false
-
+#| warning: false
+library(tidyverse)
 library(tidytext)
 library(textstem)
-```
-
-The data will will use is the new testament of the King James Bible
-
-```{r}
-#| label: data-clean
-#| echo: false
 
 newtest_df <- scriptuRs::new_testament %>% tibble()
 matthew_df <- newtest_df %>% 
   filter(book_title == "Matthew")
+
+glimpse(matthew_df)
+
+matthew_df %>% 
+  summarise(mean.verse.length = mean(str_count(text, pattern = "\\w+")),
+            min.verse.length = min(str_count(text, pattern = "\\w+")),
+            max.verse.length = max(str_count(text, pattern = "\\w+")))
 ```
 
-## Text Pre-Processing
+Each row of our dataset corresponds to a verse within the book of Matthew. A verse contains on average, 22.2 words.
 
-Clean and pre-process text data to remove noise, irrelevant information and standardise the format for further processing and analysis.
+## Tokenisation
 
-**Learning Outcomes:**
+The <code>unnest_tokens()</code> function from the **{tidytext}** package quickly extracts the tokens from our dataset. In this case (as in most cases), the token level that we are interested in is "words".
 
--   Tokenisation
-
--   Stopword removal
-
--   Stemming
-
--   Lemmatisation
-
-### Tokenisation
-
-Tokenisation...
+Given "words" is the default token (identified through the <code>token</code> argument, we just need to identify the **input** (the text column name; in this instance it is simply called `text`) and the **output** (the name of the new column that will contain each token; in this instance we will call it "word")
 
 ```{r}
 #| label: tokenisation
+matthew_token_df <- matthew_df %>% 
+  unnest_tokens(input = text,
+                output = "word")
+
+
+glimpse(matthew_token_df)
+
 
 token_count <- matthew_df %>% 
   unnest_tokens(output = "word",
@@ -95,48 +92,77 @@ head(token_count)
 
 ```
 
-As the output above shows, the most common words are words that aren't very informative. Words such as "and", "the", "of" don't provide us with any meaning. These are the words known as "stop words" and before we can properly tokenise our data, we need to remove these kinds of words.
+Now we have a data frame `matthew_token_df` where each row corresponds to a word (identified in the column `word`) within each verse.
+
+Now, we can use `count()` to see what the most common words are:
+
+```{r}
+#| label: count_1
+matthew_token_df %>% 
+  count(word, sort = TRUE) %>% 
+  head()
+```
+
+As the output above shows, the most common words don't give us any insight into what the themes of the text are. Most of the words in this list are common "stop words". They are words that need to be removed before we can continue with any further processing or analyses.
 
 ### Stop Word Removal
 
-We use the anti_join function and the stop_words dataset from the tidytext package
+Before we can remove any stop words from our dataset, we first need to identify a collection of words that are considered *stop words.* Thankfully, the **{tidytext}** package contains a `stop_words` data frame that contains commonly used stop words from three different lexicon sources.
+
+Using `anti_join()` we can select only the words in our dataset that do not match any of the stop words.
 
 ```{r}
-token_count <- matthew_df %>% 
-  unnest_tokens(output = "word",
-                input = text,
-                token = "words") %>% 
-  anti_join(stop_words) %>% 
-  count(word, sort = TRUE)
+matthew_token_df <- matthew_token_df %>% 
+  anti_join(stop_words, by = "word")
 
-head(token_count, 10)
+matthew_token_df %>% 
+  count(word, sort = TRUE) %>% 
+  head(10)
 ```
 
-And now we get a much greater understanding as to what themes this text contains. No surprise here that this text.
+By removing stop words, we reduced the number of rows in our tokenised dataset from 23,685 to just 7,563! While our list of the most common words is certainly more informative, there are still some words that would be considered stop words, but were missed by our initial anti join. We will quickly fix that up now.
 
-### Stemming
+```{r}
+#| label: more-stop-words
+#| warning: false
 
-<code>wordStem()</code> from the {SnowballC} package.
+more_stop_words <- tibble(word = c("thou", "thee", "thy", "hath", "shalt", "woe"))
+
+matthew_token_df <- matthew_token_df %>% 
+  anti_join(more_stop_words)
+
+matthew_token_df %>% 
+  count(word, sort = TRUE) %>% 
+  head(10)
+```
 
 ### Lemmatisation
 
--   {udpipe} package - actually can use lemmatize_words from tidytext
+Our final pre-processing stage is to reduce the words down to their base word or "lemma". This will ensure that words with different tenses are captured as one word. For example, in our data-set there are 4 variations of the word "gather". If we do not reduce these down to their lemma "gather", our analyses will look at each word as a completely separate entity.
 
 ```{r}
-# library(udpipe)
+#| label: gather-lemma
+matthew_token_df %>% 
+  filter(str_detect(word, "gather")) %>% count(word, sort = TRUE)
 
-# udmodel <- udpipe::udpipe_download_model(language = "english")
-
-matthew_token <- matthew_df %>% 
-    unnest_tokens(output = "word",
-                input = text,
-                token = "words") %>% 
-  anti_join(stop_words)
-
-matthew_token %>% 
-  mutate(lemma = lemmatize_words(word)) %>% 
-  count(lemma, sort = TRUE)
 ```
+
+This time we will use `lemmatize_words()` from the **{textstem}** package within a `mutate()` to identify the base of each word and use this base in a new column.
+
+```{r}
+#| label: lemmatise-words
+matthew_lemma_df <- matthew_token_df %>% 
+  mutate(lemma = lemmatize_words(word))
+  
+matthew_lemma_df %>% 
+  filter(str_detect(word, "gather")) %>% 
+  count(lemma)
+
+```
+
+Now we can see that the "gather" has been extracted from the words "gathered" and "gathering". As "gathereth" isn't a word that exists in dictionaries these days, it has been ignored. Given it was only used twice in the book, we will leave it as is for now.
+
+Now we are confident that our dataset contains meaningful words that have been reduced down to their base. The next step is to explore different representations of this cleaned data-set.
 
 ## Text Representation
 

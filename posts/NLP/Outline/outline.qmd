@@ -1,7 +1,11 @@
 ---
-title: "NLP Outline"
+title: "Topic Modeling in NLP Outline"
 date: "2024-01-19"
 categories: [NLP]
+editor_options: 
+  chunk_output_type: console
+execute: 
+  warning: false
 ---
 
 Rather than try and "learn everything I can" about Natural Language Processing, I figured the better method would be to first outline my goals in learning NLP. From here, I can design a program that will enable me to achieve these goals as efficiently as possible.

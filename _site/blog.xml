@@ -81,37 +81,410 @@ font-style: inherit;">  }</span></span>
 background-color: null;
 font-style: inherit;">   "</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-84b8a25801cd9da40dd5" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-84b8a25801cd9da40dd5">{"x":{"diagram":"\n  digraph {\n  layout = dot\n  node [shape = rectangle,style=filled,fixedsize=False]\n  edge[color=grey,arrowhead=vee]\n  A[label = \"Corpus\"]\n  B[label = \"Pre-Processing\"]\n  C[label = \"Tokenisation\"]\n  D[label = \"Stop Word Removal\"]\n  E[label = \"Stemming/Lemmatisation\"]\n\n  A->B\n  B->C\n  B->D\n  B->E\n\n\n  }\n   ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-ac6d8dc5ad05f96a4d21" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-ac6d8dc5ad05f96a4d21">{"x":{"diagram":"\n  digraph {\n  layout = dot\n  node [shape = rectangle,style=filled,fixedsize=False]\n  edge[color=grey,arrowhead=vee]\n  A[label = \"Corpus\"]\n  B[label = \"Pre-Processing\"]\n  C[label = \"Tokenisation\"]\n  D[label = \"Stop Word Removal\"]\n  E[label = \"Stemming/Lemmatisation\"]\n\n  A->B\n  B->C\n  B->D\n  B->E\n\n\n  }\n   ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<p>Text (like all real-world data) comes in a messy format. Whether that text be a collection of blog posts, newspaper articles, a book and so on, the text must be prepared and organised in a format that will make it more efficient to apply further techniques to it.</p>
-<p>In pre-processing text, there are a few key steps including:</p>
+<p>Text, like all data, comes in a messy format. Whether that text be a collection of blog posts, newspaper articles, a book, the text must be prepared and organised in a format that will make it more efficient to apply further techniques to it.</p>
+<p>In this section we cover the key steps involved in text pre-processing:</p>
 <ol type="1">
-<li><strong>Tokenisation:</strong> Splitting text into individual tokens<sup>1</sup></li>
+<li><strong>Tokenisation:</strong> Splitting text into individual tokens. A “token” is the smallest attribute that you are interested in. Usually it is a word, however it could be a character, or sentence and beyond.</li>
+<li><strong>Stop Word Removal:</strong> <em>Stop Words</em> are words that are considered insignificant to understanding the meaning of a sentence, but are required to help form a sentence. There is no universal list of stop words, however common stop words include “a”, “but”, “an”, “it”, “the”, “that” and so on.</li>
+<li><strong>Stemming or Lemmatisation:</strong> Both stemming and lemmatisation are methods to reduce words down to their base or root. For example, “fishing”, “fishes”, and “fished” will all become just “fish”<em>.</em> &lt;u&gt;Stemming&lt;/u&gt; reduces words to their stem just by looking at the suffix of the word, while <u>lemmatisation</u> reduces words to their base or “lemma” by considering the word and the context in which it appears. For example in stemming, the word “caring” would be reduced to the word “car”, however in lemmatisation it would be reduced to “care” (the correct form). Given its increased accuracy, Lemmatisation is the tool we shall use.</li>
 </ol>
-<section id="load-packages-and-data" class="level2">
-<h2 class="anchored" data-anchor-id="load-packages-and-data">Load Packages and Data</h2>
-<p>Much of our pre-processing can be completed with the <code>tidytext</code> package.</p>
+<section id="packages-and-data" class="level2">
+<h2 class="anchored" data-anchor-id="packages-and-data">Packages and Data</h2>
+<p>Text pre-processing will be done with the <strong>{tidytext}</strong> and <strong>{textstem}</strong> packages. The data-set we are using for text pre-processing is the book of Matthew from the New Testament of the King James Bible. We will access this through the <code>new_testament()</code> function in the <strong>{scriptuRs}</strong> package.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">library</span>(tidytext)</span>
+font-style: inherit;">library</span>(tidyverse)</span>
 <span id="cb2-2"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">library</span>(scriptuRs)</span></code></pre></div>
+font-style: inherit;">library</span>(tidytext)</span>
+<span id="cb2-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(textstem)</span>
+<span id="cb2-4"></span>
+<span id="cb2-5">newtest_df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> scriptuRs<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span>new_testament <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>()</span>
+<span id="cb2-6">matthew_df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> newtest_df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(book_title <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Matthew"</span>)</span>
+<span id="cb2-8"></span>
+<span id="cb2-9"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glimpse</span>(matthew_df)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,071
+Columns: 19
+$ volume_id          &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+$ book_id            &lt;dbl&gt; 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40,…
+$ chapter_id         &lt;dbl&gt; 930, 930, 930, 930, 930, 930, 930, 930, 930, 930, 9…
+$ verse_id           &lt;dbl&gt; 23146, 23147, 23148, 23149, 23150, 23151, 23152, 23…
+$ volume_title       &lt;chr&gt; "New Testament", "New Testament", "New Testament", …
+$ book_title         &lt;chr&gt; "Matthew", "Matthew", "Matthew", "Matthew", "Matthe…
+$ volume_long_title  &lt;chr&gt; "The New Testament", "The New Testament", "The New …
+$ book_long_title    &lt;chr&gt; "The Gospel According to St Matthew", "The Gospel A…
+$ volume_subtitle    &lt;chr&gt; "Of our Lord and Saviour Jesus Christ", "Of our Lor…
+$ book_subtitle      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ volume_short_title &lt;chr&gt; "NT", "NT", "NT", "NT", "NT", "NT", "NT", "NT", "NT…
+$ book_short_title   &lt;chr&gt; "Matt.", "Matt.", "Matt.", "Matt.", "Matt.", "Matt.…
+$ volume_lds_url     &lt;chr&gt; "nt", "nt", "nt", "nt", "nt", "nt", "nt", "nt", "nt…
+$ book_lds_url       &lt;chr&gt; "matt", "matt", "matt", "matt", "matt", "matt", "ma…
+$ chapter_number     &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ verse_number       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, …
+$ text               &lt;chr&gt; "THE book of the generation of Jesus Christ, the so…
+$ verse_title        &lt;chr&gt; "Matthew 1:1", "Matthew 1:2", "Matthew 1:3", "Matth…
+$ verse_short_title  &lt;chr&gt; "Matt. 1:1", "Matt. 1:2", "Matt. 1:3", "Matt. 1:4",…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">matthew_df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb4-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mean.verse.length =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_count</span>(text, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pattern =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">w+"</span>)),</span>
+<span id="cb4-3">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">min.verse.length =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_count</span>(text, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pattern =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">w+"</span>)),</span>
+<span id="cb4-4">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max.verse.length =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_count</span>(text, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pattern =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">w+"</span>)))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  mean.verse.length min.verse.length max.verse.length
+              &lt;dbl&gt;            &lt;int&gt;            &lt;int&gt;
+1              22.2                6               54</code></pre>
+</div>
+</div>
+<p>Each row of our dataset corresponds to a verse within the book of Matthew. A verse contains on average, 22.2 words.</p>
+</section>
+<section id="tokenisation" class="level2">
+<h2 class="anchored" data-anchor-id="tokenisation">Tokenisation</h2>
+<p>The <code>unnest_tokens()</code> function from the <strong>{tidytext}</strong> package quickly extracts the tokens from our dataset. In this case (as in most cases), the token level that we are interested in is “words”.</p>
+<p>Given “words” is the default token (identified through the <code>token</code> argument, we just need to identify the <strong>input</strong> (the text column name; in this instance it is simply called <code>text</code>) and the <strong>output</strong> (the name of the new column that will contain each token; in this instance we will call it “word”)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">matthew_tokens <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> matthew_df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb6-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unnest_tokens</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">input =</span> text,</span>
+<span id="cb6-3">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">output =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"word"</span>)</span>
+<span id="cb6-4"></span>
+<span id="cb6-5"></span>
+<span id="cb6-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glimpse</span>(matthew_tokens)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 23,685
+Columns: 19
+$ volume_id          &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+$ book_id            &lt;dbl&gt; 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40,…
+$ chapter_id         &lt;dbl&gt; 930, 930, 930, 930, 930, 930, 930, 930, 930, 930, 9…
+$ verse_id           &lt;dbl&gt; 23146, 23146, 23146, 23146, 23146, 23146, 23146, 23…
+$ volume_title       &lt;chr&gt; "New Testament", "New Testament", "New Testament", …
+$ book_title         &lt;chr&gt; "Matthew", "Matthew", "Matthew", "Matthew", "Matthe…
+$ volume_long_title  &lt;chr&gt; "The New Testament", "The New Testament", "The New …
+$ book_long_title    &lt;chr&gt; "The Gospel According to St Matthew", "The Gospel A…
+$ volume_subtitle    &lt;chr&gt; "Of our Lord and Saviour Jesus Christ", "Of our Lor…
+$ book_subtitle      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ volume_short_title &lt;chr&gt; "NT", "NT", "NT", "NT", "NT", "NT", "NT", "NT", "NT…
+$ book_short_title   &lt;chr&gt; "Matt.", "Matt.", "Matt.", "Matt.", "Matt.", "Matt.…
+$ volume_lds_url     &lt;chr&gt; "nt", "nt", "nt", "nt", "nt", "nt", "nt", "nt", "nt…
+$ book_lds_url       &lt;chr&gt; "matt", "matt", "matt", "matt", "matt", "matt", "ma…
+$ chapter_number     &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ verse_number       &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, …
+$ verse_title        &lt;chr&gt; "Matthew 1:1", "Matthew 1:1", "Matthew 1:1", "Matth…
+$ verse_short_title  &lt;chr&gt; "Matt. 1:1", "Matt. 1:1", "Matt. 1:1", "Matt. 1:1",…
+$ word               &lt;chr&gt; "the", "book", "of", "the", "generation", "of", "je…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">token_count <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> matthew_df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb8-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unnest_tokens</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">output =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"word"</span>,</span>
+<span id="cb8-3">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">input =</span> text,</span>
+<span id="cb8-4">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">token =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"words"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb8-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">count</span>(word, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sort =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb8-6"></span>
+<span id="cb8-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">head</span>(token_count)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  word      n
+  &lt;chr&gt; &lt;int&gt;
+1 and    1552
+2 the    1405
+3 of      672
+4 unto    435
+5 he      412
+6 that    388</code></pre>
+</div>
+</div>
+<p>Now we have a data frame <code>matthew_tokens</code> where each row corresponds to a word (identified in the column <code>word</code>) within each verse.</p>
+<p>Now, we can use <code>count()</code> to see what the most common words are:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">matthew_tokens <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb10-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">count</span>(word, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sort =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb10-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">head</span>()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  word      n
+  &lt;chr&gt; &lt;int&gt;
+1 and    1552
+2 the    1405
+3 of      672
+4 unto    435
+5 he      412
+6 that    388</code></pre>
+</div>
+</div>
+<p>As the output above shows, the most common words don’t give us any insight into what the themes of the text are. Most of the words in this list are common “stop words”. They are words that need to be removed before we can continue with any further processing or analyses.</p>
+<section id="stop-word-removal" class="level3">
+<h3 class="anchored" data-anchor-id="stop-word-removal">Stop Word Removal</h3>
+<p>Before we can remove any stop words from our dataset, we first need to identify a collection of words that are considered <em>stop words.</em> Thankfully, the <strong>{tidytext} package</strong></p>
+<p>We use the anti_join function and the stop_words dataset from the tidytext package</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">token_count <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> matthew_df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb12-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unnest_tokens</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">output =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"word"</span>,</span>
+<span id="cb12-3">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">input =</span> text,</span>
+<span id="cb12-4">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">token =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"words"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb12-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">anti_join</span>(stop_words) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb12-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">count</span>(word, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sort =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(word)`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">head</span>(token_count, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   word          n
+   &lt;chr&gt;     &lt;int&gt;
+ 1 ye          263
+ 2 jesus       172
+ 3 thou        151
+ 4 thee        100
+ 5 thy          90
+ 6 son          78
+ 7 heaven       76
+ 8 lord         76
+ 9 disciples    71
+10 behold       60</code></pre>
+</div>
+</div>
+<p>And now we get a much greater understanding as to what themes this text contains. No surprise here that this text.</p>
+</section>
+<section id="stemming" class="level3">
+<h3 class="anchored" data-anchor-id="stemming">Stemming</h3>
+<p><code>wordStem()</code> from the {SnowballC} package.</p>
+</section>
+<section id="lemmatisation" class="level3">
+<h3 class="anchored" data-anchor-id="lemmatisation">Lemmatisation</h3>
+<ul>
+<li>{udpipe} package - actually can use lemmatize_words from tidytext</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># library(udpipe)</span></span>
+<span id="cb16-2"></span>
+<span id="cb16-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># udmodel &lt;- udpipe::udpipe_download_model(language = "english")</span></span>
+<span id="cb16-4"></span>
+<span id="cb16-5">matthew_token <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> matthew_df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb16-6">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unnest_tokens</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">output =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"word"</span>,</span>
+<span id="cb16-7">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">input =</span> text,</span>
+<span id="cb16-8">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">token =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"words"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb16-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">anti_join</span>(stop_words)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(word)`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">matthew_token <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb18-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lemma =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lemmatize_words</span>(word)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb18-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">count</span>(lemma, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sort =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,471 × 2
+   lemma        n
+   &lt;chr&gt;    &lt;int&gt;
+ 1 ye         263
+ 2 jesus      172
+ 3 thou       151
+ 4 you        100
+ 5 thy         90
+ 6 son         82
+ 7 heaven      78
+ 8 lord        76
+ 9 disciple    75
+10 behold      62
+# ℹ 1,461 more rows</code></pre>
+</div>
 </div>
 </section>
-<section id="text-pre-processing" class="level2">
-<h2 class="anchored" data-anchor-id="text-pre-processing">Text Pre-Processing</h2>
-<p>Clean and pre-process text data to remove noise, irrelevant information and standardise the format for further processing and analysis.</p>
-<p><strong>Learning Outcomes:</strong></p>
-<ul>
-<li><p>Tokenisation</p></li>
-<li><p>Stopword removal</p></li>
-<li><p>Stemming</p></li>
-<li><p>Lemmatisation</p></li>
-</ul>
 </section>
 <section id="text-representation" class="level2">
 <h2 class="anchored" data-anchor-id="text-representation">Text Representation</h2>
@@ -139,13 +512,7 @@ font-style: inherit;">library</span>(scriptuRs)</span></code></pre></div>
 </section>
 </section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>A token is the smallest attribute that you are interested in (e.g., characters, words, sentences)↩︎</p></li>
-</ol>
-</section></div> ]]></description>
+ ]]></description>
   <category>NLP</category>
   <guid>https://amackay.netlify.app/posts/NLP/Text Pre-Processing/text_pre-processing.html</guid>
   <pubDate>Mon, 25 Mar 2024 13:00:00 GMT</pubDate>
