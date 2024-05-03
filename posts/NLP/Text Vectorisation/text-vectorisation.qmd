@@ -1,0 +1,195 @@
+---
+title: "Text Vectorisation"
+date: "2024-03-26"
+categories: [NLP]
+editor_options: 
+  chunk_output_type: console
+footnotes-hover: true
+execute: 
+  warning: false
+---
+
+```{r}
+#| label: pre-process-data
+library(tidyverse)
+library(tidytext)
+library(textstem)
+
+# Input Dataset
+newtest_df <- scriptuRs::new_testament %>% tibble()
+matthew_df <- newtest_df %>% 
+  filter(book_title == "Matthew")
+
+# Identify Stop Words
+more_stop_words <- tibble(word = c("thou", "thee", "thy", "hath", "shalt", "woe", "ye"), lexicon = "Az")
+
+stop_words <- bind_rows(stop_words, more_stop_words)
+
+# Tokenize Data and remove stop words
+matthew_token_df <- matthew_df %>% 
+  unnest_tokens(
+    input = text,
+    output = "word"
+  ) %>% 
+  anti_join(stop_words)
+
+# Lemmatize words
+matthew_lemma_df <- matthew_token_df %>% 
+  mutate(lemma = lemmatize_words(word))
+```
+
+```{r}
+#| echo: false
+library(DiagrammeR)
+grViz("
+  digraph {
+  layout = dot
+  node [shape = rectangle,style=filled,fixedsize=False]
+  edge[color=grey,arrowhead=vee]
+  A0[label = 'Corpus']
+  A[label = 'Pre-Processed Text']
+  B[label = 'Text Vectorisation', fontname = 'times-bold']
+  C[label = 'Bag-of-Words']
+  C1[label = 'Word Frequency']
+  C2[label = 'TF-IDF']
+  E[label = 'Word Embeddings']
+  F[label = 'Contextual Embeddings']
+  
+  E1[label = 'Word2Vec']
+  E2[label = 'GloVe']
+  E3[label = 'FastText']
+  
+  F1[label = 'ELMo']
+  F2[label = 'BERT']
+  F3[label = 'GPT']
+
+  A0->A
+  A->B
+  B->C
+  B->F
+  C->C1
+  C->C2
+  B->E
+  
+  E -> {E1 E2 E3}
+  
+  
+  F -> {F1 F2 F3}
+  
+
+
+  }
+   ")
+```
+
+In the previous part of this series, we took a corpus of text (in this case the book of Matthew from the King James Bible) and we applied pre-processing techniques to it to extract the key words in each verse of the book.
+
+In this section we will look at different ways to vectorise text to then be used in various Machine Learning models. The reason we do this is because these models can process text if it is linked with a numerical value. The way that we end up representing text will be contingent on the type of model that we want to use, which is dependent of course on the whole purpose of our NLP venture in the first place.
+
+## Text Vectorisation
+
+In simple terms, text vectorisation is the process of converting text into numerical vectors, which can then be used as input into machine learning models.
+
+There are a variety of ways in which text vectorisation can occur. The method chosen should be informed by the desired outcome of your Machine Learning Model. In our example, we are wanting to perform a Topic Analysis. Typically, TF-IDF is sufficient for this approach.
+
+## Bag-of-Words
+
+Methods that fall under the Bag of Words (BoW) umbrella convert tokens into numerical values corresponding to their frequency. This is done by converting our words into a Term Document or Document Term Matrix (TDM and DTM respectively). These matrices display each word with their corresponding frequency in each document. With TDM, rows represent terms (words or other tokens) and columns represent the documents in the corpus. With DTM the rows represent documents and the the columns represent terms.
+
+BoW approaches treat each word as a separate feature and ignore the context and order in which they appear. As such these are considered to be the most basic methods of text vectorisation. However, they are less computationally intense as their deep learning counterparts and are sufficient for many NLP use cases.
+
+### Word Counts
+
+We can use the <code>cast_tdm()</code> function from the **{tidytext}** package to convert our raw token count into a Term Document Matrix.
+
+```{r}
+#| label: TDM-example
+text_corpus <- tibble(text = c("This is the first document",
+                 "This document is the second document",
+                 "And this is the third one"),
+                 doc = 1:3)
+
+text_tdm <- text_corpus %>% 
+  unnest_tokens(input = text,
+                output = "word") %>% 
+  count(doc, word) %>% 
+  cast_tdm(document = doc,
+           term = word,
+           value = n)
+
+as.matrix(text_tdm)
+```
+
+<code>cast_tdm()</code> has converted our counts into a matrix with the terms as rows and documents as columns and the counts (of terms within each document) as the cell value. The <code>cast_dtm()</code> function does the same thing, but with the rows and columns switched around:
+
+```{r}
+#| label: DTM-example
+text_corpus <- tibble(text = c("This is the first document",
+                 "This document is the second document",
+                 "And this is the third one"),
+                 doc = 1:3)
+
+text_dtm <- text_corpus %>% 
+  unnest_tokens(input = text,
+                output = "word") %>% 
+  count(doc, word) %>% 
+  cast_dtm(document = doc,
+           term = word,
+           value = n)
+
+as.matrix(text_dtm)
+```
+
+From what I have seen, the DTM format is more preferable to TDM as it may be more memory-efficient when there is a large ratio of text to documents (which would be the case with most standard text formats).
+
+In our example using the book of matthew, the matrix is too large to display. However glimpsing the <code>dtm</code> object confirms that the conversion has worked.
+
+```{r}
+#| label: DTM
+matthew_dtm <- matthew_lemma_df %>% 
+  count(chapter_number, lemma) %>% 
+  cast_dtm(document = chapter_number,
+           term = lemma,
+           value = n)
+
+as.matrix(matthew_dtm) %>% glimpse()
+```
+
+### TD-IDF
+
+Term Document - Inverse Document Frequency is essentially the same as DTM, however instead of raw counts of document terms being used in cells, a weighted count that measures the *uniqueness* of each term in a document is used. This means that words that are common and unique to a document within a corpus are given a higher score than words that are common across all documents in a corpus. If we break down the term "TF-IDF", we get a better understanding as to what is going on:
+
+-   **Term Frequency (TF):** Simply the same as what we calculated above. This is the frequency of a term (word) in a given document
+
+-   **Inverse Document Frequency (IDF):** If **document frequency** assesses how common a word is across a corpus, then **Inverse Document Frequency** assesses how unique a word is across a corpus. Words that are common across many documents will receive a lower score, whereas rare words have a higher score
+
+TF-IDF is simply the product of the TF and IDF scores. A word that is common in one document but rare across all documents will be given a higher score than a word that is common both in one document and across the corpus.
+
+The advantage of this method, is that is captures the importance of each word within the context of the corpus. While
+
+#### Method 2: Using <code>TermDocumentMatrix()</code>
+
+```{r}
+library(tm)
+
+tdm <- TermDocumentMatrix(matthew_lemma_df)
+tdm_2 <- TermDocumentMatrix(matthew_df)
+
+
+as.matrix(tdm)
+as.matrix(tdm_2)
+```
+
+### Term Frequency-Inverse Document Frequency (TF-IDF)
+
+## Topic Modeling
+
+Identify themes or topics present in a collection of documents
+
+**Learning Outcomes:**
+
+-   Latent Dirichlet Allocation (LDA)
+
+### Topic Modeling
+
+**Learning Outcomes:** Identify and extract the underlying themes or topics present in a corpus.

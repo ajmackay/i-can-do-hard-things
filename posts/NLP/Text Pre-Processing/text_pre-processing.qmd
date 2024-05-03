@@ -81,15 +81,6 @@ matthew_token_df <- matthew_df %>%
 
 glimpse(matthew_token_df)
 
-
-token_count <- matthew_df %>% 
-  unnest_tokens(output = "word",
-                input = text,
-                token = "words") %>% 
-  count(word, sort = TRUE)
-
-head(token_count)
-
 ```
 
 Now we have a data frame `matthew_token_df` where each row corresponds to a word (identified in the column `word`) within each verse.
@@ -126,7 +117,7 @@ By removing stop words, we reduced the number of rows in our tokenised dataset f
 #| label: more-stop-words
 #| warning: false
 
-more_stop_words <- tibble(word = c("thou", "thee", "thy", "hath", "shalt", "woe"))
+more_stop_words <- tibble(word = c("thou", "thee", "thy", "hath", "shalt", "woe", "ye"))
 
 matthew_token_df <- matthew_token_df %>% 
   anti_join(more_stop_words)
@@ -162,30 +153,4 @@ matthew_lemma_df %>%
 
 Now we can see that the "gather" has been extracted from the words "gathered" and "gathering". As "gathereth" isn't a word that exists in dictionaries these days, it has been ignored. Given it was only used twice in the book, we will leave it as is for now.
 
-Now we are confident that our dataset contains meaningful words that have been reduced down to their base. The next step is to explore different representations of this cleaned data-set.
-
-## Text Representation
-
-\[Text here\]
-
-**Learning Outcomes:**
-
--   Bad-of-words model
-
--   Term Frequency - Inverse Document Frequency (TF-IDF)
-
--   Word embeddings (word2vec, GloVe)
-
--   Contextual embeddings (BERT, GPT)
-
-## Topic Modeling
-
-Identify themes or topics present in a collection of documents
-
-**Learning Outcomes:**
-
--   Latent Dirichlet Allocation (LDA)
-
-### Topic Modeling
-
-**Learning Outcomes:** Identify and extract the underlying themes or topics present in a corpus.
+Now we are confident that our dataset contains meaningful words that have been reduced down to their base. The next step is to explore different ways to vecrtorise this cleaned text.

@@ -37,14 +37,14 @@ grViz("
   D[label = 'Stop Word Removal']
   E[label = 'Stemming/Lemmatisation']
 
-  F[label = 'Text Representation']
+  F[label = 'Text Vectorisation']
   G[label = 'Bag-of-Words']
   J[label = 'Contextual Embeddings']
-  H[label = 'TF-IDF']
   I[label = 'Word Embeddings']
+  
+ 
 
   K[label = 'Topic Modeling']
-  L[label = 'LDA']
 
   A->B
   B->C
@@ -53,12 +53,12 @@ grViz("
 
   rank=same {B->F}
   F->G
-  F->H
   F->I
-  G->J
+  F->J
+  
+ 
 
   rank=same {F->K}
-  K->L
 
   }
    ")
@@ -78,15 +78,13 @@ Clean and pre-process text data to remove noise, irrelevant information and stan
 
 -   Lemmatisation
 
-## Text Representation
+## Text Vectorisation
 
-After pre-processing, the text must be converted into a format that will allow for more complex analysis. This usually involves attributing a quantitative value to the text (either specific words, words within documents or documents within a corpus).
+After pre-processing, the text must be converted into numerical format that will allow for more complex analysis.
 
 **Learning Outcomes:**
 
--   Bad-of-words model
-
--   Term Frequency - Inverse Document Frequency (TF-IDF)
+-   Bad-of-words model (including Term Frequency - Inverse Document Frequency \[TF-IDF\] weightings)
 
 -   Word embeddings (word2vec, GloVe)
 

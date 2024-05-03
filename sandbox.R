@@ -1,3 +1,33 @@
+
+library(tm)
+
+# Create a sample text corpus
+text_corpus <- c("This is the first document",
+                 "This document is the second document",
+                 "And this is the third one")
+
+matt_corpus <- matthew_df %>% pull(text) %>%
+  VectorSource() %>% VCorpus()
+
+# Convert the character vectors into a corpus
+corpus <- VCorpus(VectorSource(text_corpus))
+
+# Perform some preprocessing steps (optional)
+corpus <- tm_map(corpus, content_transformer(tolower))    # Convert to lower case
+corpus <- tm_map(corpus, removePunctuation)               # Remove punctuation
+corpus <- tm_map(corpus, removeNumbers)                   # Remove numbers
+
+matt_corpus <- tm_map(matt_corpus, content_transformer(lemmatize_words))
+matt_corpus <- tm_map(matt_corpus, removePunctuation)
+matt_corpus <- tm_map(matt_corpus, content_transformer(tolower))
+
+# Create the term-document matrix
+tdm <- TermDocumentMatrix(matt_corpus)
+tdm %>% as.matrix()
+
+as.matrix(tdm)
+
+
 matthew_lemma_df %>%
   filter(str_detect(word, "gather")) %>%
   count(lemma)
