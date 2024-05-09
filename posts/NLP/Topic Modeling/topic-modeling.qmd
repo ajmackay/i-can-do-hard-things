@@ -12,6 +12,8 @@ execute:
 ```{r}
 #| echo: false
 library(DiagrammeR)
+library(tidytext)
+library(tidyverse)
 grViz("
   digraph {
   layout = dot
@@ -51,14 +53,13 @@ We use `cast_dtm()` from the **{tidytext}** package along with `weightTfIdf()` f
 
 ```{r}
 #| label: DTM_TF-IDF
-matthew_matrix <- matthew_lemma_df %>% 
-  count(verse_title, lemma) %>% 
-  cast_dtm(document = verse_title,
-           term = lemma,
-           value = n,
-           weighting = tm::weightTfIdf)
+# matthew_matrix <- matthew_lemma_df %>% 
+#   count(verse_title, lemma) %>% 
+#   cast_dtm(document = verse_title,
+#            term = lemma,
+#            value = n,
+#            weighting = tm::weightTfIdf)
 
-matthew_matrix
 ```
 
 \[See claude for interpretation of matrix\]

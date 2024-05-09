@@ -140,9 +140,9 @@ text_dtm <- text_corpus %>%
 as.matrix(text_dtm)
 ```
 
-From what I have seen, the DTM format is more preferable to TDM as it may be more memory-efficient when there is a large ratio of text to documents (which would be the case with most standard text formats).
+From what I gather, the DTM format is preferable to TDM as it may be more memory-efficient when there is a large ratio of text to documents (which would be the case with most standard text formats).
 
-In our example using the book of matthew, the matrix is too large to display. However glimpsing the <code>dtm</code> object confirms that the conversion has worked.
+In our example using the book of matthew, the matrix is too large to display. However a glimpse of the <code>dtm</code> object confirms the conversion has worked.
 
 ```{r}
 #| label: DTM
@@ -157,7 +157,7 @@ as.matrix(matthew_dtm) %>% glimpse()
 
 ### TD-IDF
 
-Term Document - Inverse Document Frequency is essentially the same as DTM, however instead of raw counts of document terms being used in cells, a weighted count that measures the *uniqueness* of each term in a document is used. This means that words that are common and unique to a document within a corpus are given a higher score than words that are common across all documents in a corpus. If we break down the term "TF-IDF", we get a better understanding as to what is going on:
+Term Document - Inverse Document Frequency is essentially the same as DTM, however instead of raw counts of document terms presented in cells, a weighted count that measures the *uniqueness* of each term in a document is used. This means that words that are common and unique to a document within a corpus are given a higher score than words that are common across all documents in a corpus. If we break down the term "TF-IDF", we get a better understanding as to what is going on:
 
 -   **Term Frequency (TF):** Simply the same as what we calculated above. This is the frequency of a term (word) in a given document
 
@@ -165,22 +165,49 @@ Term Document - Inverse Document Frequency is essentially the same as DTM, howev
 
 TF-IDF is simply the product of the TF and IDF scores. A word that is common in one document but rare across all documents will be given a higher score than a word that is common both in one document and across the corpus.
 
-The advantage of this method, is that is captures the importance of each word within the context of the corpus. While
+The advantage of this method, is that is captures the importance of each word within the context of the corpus.
 
-#### Method 2: Using <code>TermDocumentMatrix()</code>
+To create a Document-Term Matrix with TF-IDF weights, we simply need to specify the weight to use in the <code>weighting</code> argument within <code>case_dtm()</code>.
 
 ```{r}
-library(tm)
-
-tdm <- TermDocumentMatrix(matthew_lemma_df)
-tdm_2 <- TermDocumentMatrix(matthew_df)
-
-
-as.matrix(tdm)
-as.matrix(tdm_2)
+#| label: tf-idf
+matthew_idf <- matthew_lemma_df %>% 
+  count(chapter_number, lemma) %>% 
+  cast_dtm(document = chapter_number,
+           term = lemma,
+           value = n,
+           weighting = tm::weightTfIdf)
 ```
 
-### Term Frequency-Inverse Document Frequency (TF-IDF)
+Something we haven't done so far that is important to do now, is to interpret this output from the DTM object, so we will do that now:
+
+```{r}
+matthew_idf
+```
+
+The first thing to notice is the number of documents and terms. Here we have 28 documents (which in this example are just the chapters within the book) and 1,464 unique terms (words). This doesn't give us much insight but it is good to check as a quality assurance measure.
+
+The next two lines down are the most informative for our ongoing analysis. The line <code>Non-/sparse entries: 4057/36934</code> tells us how many non-zero to zero values (term frequencies) exist in the matrix. The matrix for our 28 documents and 1,464 unique terms contains $28\times1464=40,992$ cells.
+
+Within those cells, 4,057 are **non-zero** **values**, which means that word is present in that document. In the case of un-weighted DTMs, this value can be zero (the word does not appear) or an integer from 1 (denoting the number of times the word appears in that document). In this instance as we are using a TF-IDF weighting, the value will depend on how common the word is presented in the document as well as how common it is in the corpus as a whole.
+
+If 4,057 cells are non-zero values then this means that $40992-4057=36,934$ cells contain **zero values.** Dividing the number of zero values by the total number of cells gives us the Sparsity percentage that we see on the line below. In this instance, within our DTM, 90% of the cells contain zero values. There are a number of implications that stem from having a matrix that is considered "sparse". One key implication is that a sparse matrix can make computational operations less efficient, taking up time and computational resources by running calculations on zero values. To take this into account, we have to perform dimensionality reduction.
+
+### Dimensionality Reduction
+
+#### Global vs Local Structure
+
+##### Global Structure
+
+-   SVD/LSA
+
+-   PCA
+
+-   NMF
+
+-   Truncated SVD
+
+-   Random Projections
 
 ## Topic Modeling
 

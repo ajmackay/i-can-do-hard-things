@@ -1,0 +1,18 @@
+{
+  "hash": "6965963b80322dc0982fa493894c4547",
+  "result": {
+    "markdown": "---\ntitle: \"Topic Modeling\"\ndate: \"2024-03-26\"\ncategories: [NLP]\neditor_options: \n  chunk_output_type: console\nfootnotes-hover: true\nexecute: \n  warning: false\n---\n\n::: {.cell}\n::: {.cell-output-display}\n```{=html}\n<div class=\"grViz html-widget html-fill-item\" id=\"htmlwidget-1b91d66be2600b71f5c1\" style=\"width:100%;height:464px;\"></div>\n<script type=\"application/json\" data-for=\"htmlwidget-1b91d66be2600b71f5c1\">{\"x\":{\"diagram\":\"\\n  digraph {\\n  layout = dot\\n  node [shape = rectangle,style=filled,fixedsize=False]\\n  edge[color=grey,arrowhead=vee]\\n  A[label = \\\"Pre-Processed Text\\\"]\\n  B[label = \\\"Text Representation\\\"]\\n  C[label = \\\"Bag-of-Words\\\"]\\n  D[label = \\\"TF-IDF\\\"]\\n  E[label = \\\"Word Embeddings\\\"]\\n  F[label = \\\"Contextual Embeddings\\\"]\\n\\n  A->B\\n  B->C\\n  C->F\\n  B->D\\n  B->E\\n\\n\\n  }\\n   \",\"config\":{\"engine\":\"dot\",\"options\":null}},\"evals\":[],\"jsHooks\":[]}</script>\n```\n:::\n:::\n\n\nIn the previous part of this series, we took a corpus of text (in this case the book of Matthew from the King James Bible) and we applied pre-processing techniques to it to extract the key words in each verse of the book.\n\nBefore we can go through the process of topic modeling, we need to represent our tidy text data in a way that makes sense for the topic modeling algorithm (in this case, we are using the popular Latent Dirichlet Allocation \\[LDA\\] algorithm to model our data).\n\nTo build our topic model we first need to convert our text into a Document-Term Matrix (DTM) with TF-IDF weighted frequencies.\n\n## DTM with TF-IDF\n\nA Document-Term Matrix (DTM), also known as a term-document matrix, is a numerical representation of text that describes the frequency of tokens (in this case, words) that occur in a collection of documents (in this case, bible verses).\n\nA DTM can contain binary representations of each word, the actual frequency of each word or a weighted frequency (like the term frequency-inverse document frequency) of each word.\n\nWe use `cast_dtm()` from the **{tidytext}** package along with `weightTfIdf()` from the **{tm}** package to create a DTM with TF-IDF weights.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# matthew_matrix <- matthew_lemma_df %>% \n#   count(verse_title, lemma) %>% \n#   cast_dtm(document = verse_title,\n#            term = lemma,\n#            value = n,\n#            weighting = tm::weightTfIdf)\n```\n:::\n\n\n\\[See claude for interpretation of matrix\\]\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../../../site_libs/htmltools-fill-0.5.8.1/fill.css\" rel=\"stylesheet\" />\r\n<script src=\"../../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js\"></script>\r\n<script src=\"../../../site_libs/viz-1.8.2/viz.js\"></script>\r\n<link href=\"../../../site_libs/DiagrammeR-styles-0.2/styles.css\" rel=\"stylesheet\" />\r\n<script src=\"../../../site_libs/grViz-binding-1.0.11/grViz.js\"></script>\r\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

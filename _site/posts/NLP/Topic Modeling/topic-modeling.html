@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Aaron">
-<meta name="dcterms.date" content="2024-01-19">
+<meta name="dcterms.date" content="2024-03-26">
 
-<title>Aaron Mackay - Topic Modeling in NLP Outline</title>
+<title>Aaron Mackay - Topic Modeling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -141,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Topic Modeling in NLP Outline</h1>
+      <h1 class="title">Topic Modeling</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">NLP</div>
               </div>
@@ -161,7 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">January 19, 2024</p>
+        <p class="date">March 26, 2024</p>
       </div>
     </div>
     
@@ -179,87 +179,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>Rather than try and “learn everything I can” about Natural Language Processing, I figured the better method would be to first outline my goals in learning NLP. From here, I can design a program that will enable me to achieve these goals as efficiently as possible.</p>
-<p>In short then, my main goal for learning NLP is to be able to extract key themes from a collection of documents (known in NLP-speak as a “corpus”). I want to be able to input a corpus into a model, which will then identify and extract themes or topics, both across the corpus as a whole and within documents in the corpus. These themes should be quantified in terms of their importance.</p>
-<p>A quick bit of research has indicated that <strong>Topic Modeling</strong> is the technique that I need to become familiar with.</p>
-<p>Topic modeling is a statistical model that identifies the unique themes (or “topics”) that are present in a collection of documents. These topics are identified and their importance quantified by the number of similar words that pertain to that topic in a document. The end result is an extraction of the topics in a corpus as well as the balance of topic’s within each document.</p>
-<p>To understand and utilise topic modeling, there are number of pre-requisite skills that I will need to understand first.</p>
-<p>Throughout this series I will be working with the New Testament from the King James bible, from the package <code>scripturRs</code>.</p>
-<section id="syllabus" class="level1">
-<h1>Syllabus:</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DiagrammeR)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grViz</span>(<span class="st">"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">  digraph {</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">  layout = dot</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">  node [shape = rectangle,style=filled,fixedsize=False]</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">  edge[color=grey,arrowhead=vee]</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">  A[label = 'Corpus']</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">  B[label = 'Pre-Processing']</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">  C[label = 'Tokenisation']</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="st">  D[label = 'Stop Word Removal']</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="st">  E[label = 'Stemming/Lemmatisation']</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="st">  F[label = 'Text Vectorisation']</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="st">  G[label = 'Bag-of-Words']</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="st">  J[label = 'Contextual Embeddings']</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="st">  I[label = 'Word Embeddings']</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="st">  </span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="st"> </span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="st">  K[label = 'Topic Modeling']</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="st">  A-&gt;B</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="st">  B-&gt;C</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="st">  B-&gt;D</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="st">  B-&gt;E</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="st">  rank=same {B-&gt;F}</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="st">  F-&gt;G</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="st">  F-&gt;I</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="st">  F-&gt;J</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="st">  </span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="st"> </span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="st">  rank=same {F-&gt;K}</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="st">   "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-f8db7aed6dc65efd670b" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-f8db7aed6dc65efd670b">{"x":{"diagram":"\n  digraph {\n  layout = dot\n  node [shape = rectangle,style=filled,fixedsize=False]\n  edge[color=grey,arrowhead=vee]\n  A[label = \"Corpus\"]\n  B[label = \"Pre-Processing\"]\n  C[label = \"Tokenisation\"]\n  D[label = \"Stop Word Removal\"]\n  E[label = \"Stemming/Lemmatisation\"]\n\n  F[label = \"Text Vectorisation\"]\n  G[label = \"Bag-of-Words\"]\n  J[label = \"Contextual Embeddings\"]\n  I[label = \"Word Embeddings\"]\n  \n \n\n  K[label = \"Topic Modeling\"]\n\n  A->B\n  B->C\n  B->D\n  B->E\n\n  rank=same {B->F}\n  F->G\n  F->I\n  F->J\n  \n \n\n  rank=same {F->K}\n\n  }\n   ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-1b91d66be2600b71f5c1" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-1b91d66be2600b71f5c1">{"x":{"diagram":"\n  digraph {\n  layout = dot\n  node [shape = rectangle,style=filled,fixedsize=False]\n  edge[color=grey,arrowhead=vee]\n  A[label = \"Pre-Processed Text\"]\n  B[label = \"Text Representation\"]\n  C[label = \"Bag-of-Words\"]\n  D[label = \"TF-IDF\"]\n  E[label = \"Word Embeddings\"]\n  F[label = \"Contextual Embeddings\"]\n\n  A->B\n  B->C\n  C->F\n  B->D\n  B->E\n\n\n  }\n   ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<section id="text-pre-processing" class="level2">
-<h2 class="anchored" data-anchor-id="text-pre-processing">Text Pre-Processing</h2>
-<p>Clean and pre-process text data to remove noise, irrelevant information and standardise the format for further processing and analysis.</p>
-<p><strong>Learning Outcomes:</strong></p>
-<ul>
-<li><p>Tokenisation</p></li>
-<li><p>Stopword removal</p></li>
-<li><p>Stemming</p></li>
-<li><p>Lemmatisation</p></li>
-</ul>
-</section>
-<section id="text-vectorisation" class="level2">
-<h2 class="anchored" data-anchor-id="text-vectorisation">Text Vectorisation</h2>
-<p>After pre-processing, the text must be converted into numerical format that will allow for more complex analysis.</p>
-<p><strong>Learning Outcomes:</strong></p>
-<ul>
-<li><p>Bad-of-words model (including Term Frequency - Inverse Document Frequency [TF-IDF] weightings)</p></li>
-<li><p>Word embeddings (word2vec, GloVe)</p></li>
-<li><p>Contextual embeddings (BERT, GPT)</p></li>
-</ul>
-</section>
-<section id="topic-modeling" class="level2">
-<h2 class="anchored" data-anchor-id="topic-modeling">Topic Modeling</h2>
-<p>Once the text has been pre-processed and is now in a format that computers and statistical models will understand, we can apply these models to extract the topics that are contained within our text.</p>
-<p>The most popular model for achieving this seems to be <strong>Latent Dirichlet Allocation (LDA)</strong>.</p>
+<p>In the previous part of this series, we took a corpus of text (in this case the book of Matthew from the King James Bible) and we applied pre-processing techniques to it to extract the key words in each verse of the book.</p>
+<p>Before we can go through the process of topic modeling, we need to represent our tidy text data in a way that makes sense for the topic modeling algorithm (in this case, we are using the popular Latent Dirichlet Allocation [LDA] algorithm to model our data).</p>
+<p>To build our topic model we first need to convert our text into a Document-Term Matrix (DTM) with TF-IDF weighted frequencies.</p>
+<section id="dtm-with-tf-idf" class="level2">
+<h2 class="anchored" data-anchor-id="dtm-with-tf-idf">DTM with TF-IDF</h2>
+<p>A Document-Term Matrix (DTM), also known as a term-document matrix, is a numerical representation of text that describes the frequency of tokens (in this case, words) that occur in a collection of documents (in this case, bible verses).</p>
+<p>A DTM can contain binary representations of each word, the actual frequency of each word or a weighted frequency (like the term frequency-inverse document frequency) of each word.</p>
+<p>We use <code>cast_dtm()</code> from the <strong>{tidytext}</strong> package along with <code>weightTfIdf()</code> from the <strong>{tm}</strong> package to create a DTM with TF-IDF weights.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># matthew_matrix &lt;- matthew_lemma_df %&gt;% </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   count(verse_title, lemma) %&gt;% </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   cast_dtm(document = verse_title,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#            term = lemma,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#            value = n,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#            weighting = tm::weightTfIdf)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>[See claude for interpretation of matrix]</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

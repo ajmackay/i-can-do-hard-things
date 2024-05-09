@@ -3,7 +3,7 @@ title: "Topic Modeling in NLP Outline"
 date: "2024-01-19"
 categories: [NLP]
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 execute: 
   warning: false
 ---

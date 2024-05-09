@@ -3,6 +3,8 @@
     "listing": "/blog.html",
     "items": [
       "/posts/NLP/Text Pre-Processing/text_pre-processing.html",
+      "/posts/NLP/Text Vectorisation/text-vectorisation.html",
+      "/posts/NLP/Topic Modeling/topic-modeling.html",
       "/posts/NLP/Outline/outline.html",
       "/posts/workflow/intro to series/intro.html",
       "/posts/workflow/project structure/project-structure.html",
@@ -33,6 +35,8 @@
     "listing": "/archive.html",
     "items": [
       "/posts/NLP/Text Pre-Processing/text_pre-processing.html",
+      "/posts/NLP/Text Vectorisation/text-vectorisation.html",
+      "/posts/NLP/Topic Modeling/topic-modeling.html",
       "/posts/NLP/Outline/outline.html",
       "/posts/workflow/intro to series/intro.html",
       "/posts/workflow/project structure/project-structure.html",

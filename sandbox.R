@@ -1,3 +1,18 @@
+DiagrammeR::grViz("
+  digraph {
+
+    # Define the nodes
+    A [label = 'Node A']
+    B [label = 'Node B']
+    C [label = 'Node C']
+
+    # Define the edges
+    A -> B
+    B -> C
+    C -> A
+  }
+")
+
 
 library(tm)
 
