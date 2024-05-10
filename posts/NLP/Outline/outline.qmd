@@ -41,7 +41,7 @@ grViz("
   G[label = 'Bag-of-Words']
   J[label = 'Contextual Embeddings']
   I[label = 'Word Embeddings']
-  
+  Z[label = 'Dimensionality Reduction']
  
 
   K[label = 'Topic Modeling']
@@ -59,6 +59,8 @@ grViz("
  
 
   rank=same {F->K}
+  
+  rank=same {F->Z}
 
   }
    ")

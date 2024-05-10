@@ -3,7 +3,7 @@ title: "Text Vectorisation"
 date: "2024-03-26"
 categories: [NLP]
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 footnotes-hover: true
 execute: 
   warning: false
@@ -54,6 +54,7 @@ grViz("
   C2[label = 'TF-IDF']
   E[label = 'Word Embeddings']
   F[label = 'Contextual Embeddings']
+  G[label = 'Dimensionality Reduction']
   
   E1[label = 'Word2Vec']
   E2[label = 'GloVe']
@@ -70,6 +71,8 @@ grViz("
   C->C1
   C->C2
   B->E
+  rank=same{B->G} 
+  
   
   E -> {E1 E2 E3}
   
@@ -192,31 +195,3 @@ The next two lines down are the most informative for our ongoing analysis. The l
 Within those cells, 4,057 are **non-zero** **values**, which means that word is present in that document. In the case of un-weighted DTMs, this value can be zero (the word does not appear) or an integer from 1 (denoting the number of times the word appears in that document). In this instance as we are using a TF-IDF weighting, the value will depend on how common the word is presented in the document as well as how common it is in the corpus as a whole.
 
 If 4,057 cells are non-zero values then this means that $40992-4057=36,934$ cells contain **zero values.** Dividing the number of zero values by the total number of cells gives us the Sparsity percentage that we see on the line below. In this instance, within our DTM, 90% of the cells contain zero values. There are a number of implications that stem from having a matrix that is considered "sparse". One key implication is that a sparse matrix can make computational operations less efficient, taking up time and computational resources by running calculations on zero values. To take this into account, we have to perform dimensionality reduction.
-
-### Dimensionality Reduction
-
-#### Global vs Local Structure
-
-##### Global Structure
-
--   SVD/LSA
-
--   PCA
-
--   NMF
-
--   Truncated SVD
-
--   Random Projections
-
-## Topic Modeling
-
-Identify themes or topics present in a collection of documents
-
-**Learning Outcomes:**
-
--   Latent Dirichlet Allocation (LDA)
-
-### Topic Modeling
-
-**Learning Outcomes:** Identify and extract the underlying themes or topics present in a corpus.

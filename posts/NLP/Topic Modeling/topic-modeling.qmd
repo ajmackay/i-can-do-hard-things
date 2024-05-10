@@ -3,7 +3,7 @@ title: "Topic Modeling"
 date: "2024-03-26"
 categories: [NLP]
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 footnotes-hover: true
 execute: 
   warning: false
@@ -19,47 +19,103 @@ grViz("
   layout = dot
   node [shape = rectangle,style=filled,fixedsize=False]
   edge[color=grey,arrowhead=vee]
+  A0[label = 'Corpus']
   A[label = 'Pre-Processed Text']
-  B[label = 'Text Representation']
-  C[label = 'Bag-of-Words']
-  D[label = 'TF-IDF']
-  E[label = 'Word Embeddings']
-  F[label = 'Contextual Embeddings']
+  B[label = 'Text Vectorisation']
+  B1[label = 'Dimensionality Reduction']
+  C[label = 'Topic Modeling', fontname = 'times-bold']
+  C1[label = 'LDA']
+  C2[label = 'NMF']
 
+
+  A0->A
   A->B
+  rank=same{B->B1} 
   B->C
-  C->F
-  B->D
-  B->E
+  C->{C1 C2}
+
+  
 
 
   }
-   ")
+  "
+  )
 ```
 
-In the previous part of this series, we took a corpus of text (in this case the book of Matthew from the King James Bible) and we applied pre-processing techniques to it to extract the key words in each verse of the book.
-
-Before we can go through the process of topic modeling, we need to represent our tidy text data in a way that makes sense for the topic modeling algorithm (in this case, we are using the popular Latent Dirichlet Allocation \[LDA\] algorithm to model our data).
-
-To build our topic model we first need to convert our text into a Document-Term Matrix (DTM) with TF-IDF weighted frequencies.
-
-## DTM with TF-IDF
-
-A Document-Term Matrix (DTM), also known as a term-document matrix, is a numerical representation of text that describes the frequency of tokens (in this case, words) that occur in a collection of documents (in this case, bible verses).
-
-A DTM can contain binary representations of each word, the actual frequency of each word or a weighted frequency (like the term frequency-inverse document frequency) of each word.
-
-We use `cast_dtm()` from the **{tidytext}** package along with `weightTfIdf()` from the **{tm}** package to create a DTM with TF-IDF weights.
+## The Process So Far:
 
 ```{r}
-#| label: DTM_TF-IDF
-# matthew_matrix <- matthew_lemma_df %>% 
-#   count(verse_title, lemma) %>% 
-#   cast_dtm(document = verse_title,
-#            term = lemma,
-#            value = n,
-#            weighting = tm::weightTfIdf)
+#| label: pre-process-data
+library(tidyverse)
+library(tidytext)
+library(textstem)
 
+# Input Dataset
+newtest_df <- scriptuRs::new_testament %>% tibble()
+matthew_df <- newtest_df %>% 
+  filter(book_title == "Matthew")
+
+# Identify Stop Words
+more_stop_words <- tibble(word = c("thou", "thee", "thy", "hath", "shalt", "woe", "ye"), lexicon = "Az")
+
+stop_words <- bind_rows(stop_words, more_stop_words)
+
+# Tokenize Data and remove stop words
+matthew_token_df <- matthew_df %>% 
+  unnest_tokens(
+    input = text,
+    output = "word"
+  ) %>% 
+  anti_join(stop_words)
+
+# Lemmatize words
+matthew_lemma_df <- matthew_token_df %>% 
+  mutate(lemma = lemmatize_words(word))
+
+# TDM Matrix (with TF-IDF weights)
+matthew_dtm <- matthew_lemma_df %>% 
+  count(chapter_number, lemma) %>% 
+  cast_dtm(document = chapter_number,
+           term = lemma,
+           value = n,
+           weighting = tm::weightTfIdf)
 ```
 
-\[See claude for interpretation of matrix\]
+## Topic Modeling
+
+Topic modeling is a process that aims to discover the underlying themes (or **topics**) in a corpus. The goal is to use the word distribution within documents to identify latent topics without pre-defined labels or categories.
+
+In our example, we are using topic modeling as we are interested in identifying the themes that are present in the book of Matthew.
+
+Topic modeling uses an algorithm to extract the topics based from the text vector that we previously created. The most common algorithm (and the one we will focus on today) is **Latent Dirichlet Allocation (LDA)**. However, another common algorithm is **Non-negative Matrix Factorization (NMF)**, which is used mostly when there is not enough computing power to perform LDA.
+
+### Latent Dirichlet Allocation
+
+A useful way to understand LDA is to breakdown its name: **Latent** refers to the fact that the topics in the text are not directly observable. For anyone familiar with other "Latent" models, the concept is the same. By using connections between elements in the observable data, we can identify the latent topics that these connections refer to. For example, if a document frequently mentions "dogs" and "cats", the latent variable might be "pets".
+
+**Dirichlet** refers to the specific probability distribution (a dirichlet distribution) that represents the document-topic and topic-word distributions. To understand dirichlet allocation requires a solid understanding of probability distributions and is out of the scope of this series. The **Allocation** part of LDA refers to the process of allocating words to topics and topics to documents based on the distributions from the model.
+
+The <code>LDA()</code> function from the **{topicmodels}** package will do the heavy-lifting for us in performing our LDA.
+
+-   we need to convert our TF-IDF back to just term frequencies
+
+-   We do TF-IDF to help us get familiar with the data and to inform us of any dimensionality reduction processes that need to take place.
+
+```{r}
+library(topicmodels)
+
+# convert back to term frequency
+
+matthew_tf <- matthew_lemma_df %>% 
+  count(chapter_number, lemma) %>% 
+  cast_dtm(document = chapter_number,
+           term = lemma,
+           value = n,
+           weighting = tm::weightTf)
+
+
+
+lda_model <- LDA(matthew_tf, k = 5, control = list(seed = 1234))
+
+terms(lda_model)
+```

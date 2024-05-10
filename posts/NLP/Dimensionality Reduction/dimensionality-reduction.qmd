@@ -1,0 +1,112 @@
+---
+title: "Text Vectorisation"
+date: "2024-03-26"
+categories: [NLP]
+editor_options: 
+  chunk_output_type: inline
+footnotes-hover: true
+execute: 
+  warning: false
+---
+
+```{r}
+#| label: pre-process-data
+library(tidyverse)
+library(tidytext)
+library(textstem)
+
+# Input Dataset
+newtest_df <- scriptuRs::new_testament %>% tibble()
+matthew_df <- newtest_df %>% 
+  filter(book_title == "Matthew")
+
+# Identify Stop Words
+more_stop_words <- tibble(word = c("thou", "thee", "thy", "hath", "shalt", "woe", "ye"), lexicon = "Az")
+
+stop_words <- bind_rows(stop_words, more_stop_words)
+
+# Tokenize Data and remove stop words
+matthew_token_df <- matthew_df %>% 
+  unnest_tokens(
+    input = text,
+    output = "word"
+  ) %>% 
+  anti_join(stop_words)
+
+# Lemmatize words
+matthew_lemma_df <- matthew_token_df %>% 
+  mutate(lemma = lemmatize_words(word))
+```
+
+```{r}
+#| echo: false
+library(DiagrammeR)
+grViz("
+  digraph {
+  layout = dot
+  node [shape = rectangle,style=filled,fixedsize=False]
+  edge[color=grey,arrowhead=vee]
+  A0[label = 'Corpus']
+  A[label = 'Pre-Processed Text']
+  B[label = 'Text Vectorisation']
+  C[label = 'Dimensionality Reduction', fontname = 'times-bold']
+  D[label = 'Global Structure']
+  D1[label = 'SVD/LSA']
+  D2[label = 'PCA']
+  D3[label = 'NMF']
+  D4[label = 'Random Projections']
+  E[label = 'Local Structure']
+  E1[label = 't-SNE']
+  E2[label = 'UMAP']
+  E3[label = 'LLE']
+  E4[label = 'Isomap']
+  E5[label = 'Diffusion Maps']
+  
+
+  A0->A
+  A->B
+  rank=same{B->C} 
+  C->D
+  C->E
+  D->{D1 D2 D3 D4}
+  E->{E1 E2 E3 E4 E5}
+  
+
+
+  }
+   ")
+```
+
+In the previous section, we converted our pre-processed text data into analysis-friendly vectors using the bag-of-words TF-IDF approach.
+
+In examining our Term-Document Matrix, we found that 90% of the values in the matrix contained zero values and we concluded that we should embark on dimensionality reduction before performing our topic modeling analysis. In reality, the data that we are using for this example probably doesn't warrant dimensionality reduction as it isn't very big and wouldn't be too computationally heavy to run. However, for learning's sake, we will examine the different methods of dimensionality reduction as it is a technique you will likely find use for in the future if you continue to do any kind of NLP...
+
+### Dimensionality Reduction
+
+The purpose of dimensionality redution...
+
+### Preserving Global or Local Structure
+
+##### Global Structure
+
+-   SVD/LSA
+
+-   PCA
+
+-   NMF
+
+-   Truncated SVD
+
+-   Random Projections
+
+## Topic Modeling
+
+Identify themes or topics present in a collection of documents
+
+**Learning Outcomes:**
+
+-   Latent Dirichlet Allocation (LDA)
+
+### Topic Modeling
+
+**Learning Outcomes:** Identify and extract the underlying themes or topics present in a corpus.
