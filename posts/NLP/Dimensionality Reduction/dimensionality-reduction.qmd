@@ -79,7 +79,7 @@ grViz("
 
 In the previous section, we converted our pre-processed text data into analysis-friendly vectors using the bag-of-words TF-IDF approach.
 
-In examining our Term-Document Matrix, we found that 90% of the values in the matrix contained zero values and we concluded that we should embark on dimensionality reduction before performing our topic modeling analysis. In reality, the data that we are using for this example probably doesn't warrant dimensionality reduction as it isn't very big and wouldn't be too computationally heavy to run. However, for learning's sake, we will examine the different methods of dimensionality reduction as it is a technique you will likely find use for in the future if you continue to do any kind of NLP...
+In examining our Term-Document Matrix, we found that \>99% of the values in the matrix contained zero values and we concluded that we should embark on dimensionality reduction before performing our topic modeling analysis.
 
 ### Dimensionality Reduction
 

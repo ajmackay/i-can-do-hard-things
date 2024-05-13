@@ -18,7 +18,7 @@ Topic modeling is a statistical model that identifies the unique themes (or "top
 
 To understand and utilise topic modeling, there are number of pre-requisite skills that I will need to understand first.
 
-Throughout this series I will be working with the New Testament from the King James bible, from the package <code>scripturRs</code>.
+Throughout this series I will be working with the New Testament text from the King James bible, from the package <code>scripturRs</code>.
 
 # Syllabus:
 

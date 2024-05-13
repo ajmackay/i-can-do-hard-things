@@ -3,7 +3,7 @@ title: "Text Vectorisation"
 date: "2024-03-26"
 categories: [NLP]
 editor_options: 
-  chunk_output_type: inline
+  chunk_output_type: console
 footnotes-hover: true
 execute: 
   warning: false
@@ -26,7 +26,7 @@ more_stop_words <- tibble(word = c("thou", "thee", "thy", "hath", "shalt", "woe"
 stop_words <- bind_rows(stop_words, more_stop_words)
 
 # Tokenize Data and remove stop words
-matthew_token_df <- matthew_df %>% 
+newtest_token_df <- newtest_df %>% 
   unnest_tokens(
     input = text,
     output = "word"
@@ -34,8 +34,9 @@ matthew_token_df <- matthew_df %>%
   anti_join(stop_words)
 
 # Lemmatize words
-matthew_lemma_df <- matthew_token_df %>% 
+newtest_lemma_df <- newtest_token_df %>% 
   mutate(lemma = lemmatize_words(word))
+
 ```
 
 ```{r}
@@ -85,7 +86,7 @@ grViz("
    ")
 ```
 
-In the previous part of this series, we took a corpus of text (in this case the book of Matthew from the King James Bible) and we applied pre-processing techniques to it to extract the key words in each verse of the book.
+In the previous part of this series, we took a corpus of text (in this case the New Testament) and we applied pre-processing techniques to it to extract the key words in each verse of the book.
 
 In this section we will look at different ways to vectorise text to then be used in various Machine Learning models. The reason we do this is because these models can process text if it is linked with a numerical value. The way that we end up representing text will be contingent on the type of model that we want to use, which is dependent of course on the whole purpose of our NLP venture in the first place.
 
@@ -127,11 +128,6 @@ as.matrix(text_tdm)
 
 ```{r}
 #| label: DTM-example
-text_corpus <- tibble(text = c("This is the first document",
-                 "This document is the second document",
-                 "And this is the third one"),
-                 doc = 1:3)
-
 text_dtm <- text_corpus %>% 
   unnest_tokens(input = text,
                 output = "word") %>% 
@@ -149,13 +145,13 @@ In our example using the book of matthew, the matrix is too large to display. Ho
 
 ```{r}
 #| label: DTM
-matthew_dtm <- matthew_lemma_df %>% 
-  count(chapter_number, lemma) %>% 
-  cast_dtm(document = chapter_number,
+newtest_dtm <- newtest_lemma_df %>% 
+  count(verse_id, lemma) %>% 
+  cast_dtm(document = verse_id,
            term = lemma,
            value = n)
 
-as.matrix(matthew_dtm) %>% glimpse()
+as.matrix(newtest_dtm) %>% glimpse()
 ```
 
 ### TD-IDF
@@ -174,9 +170,9 @@ To create a Document-Term Matrix with TF-IDF weights, we simply need to specify 
 
 ```{r}
 #| label: tf-idf
-matthew_idf <- matthew_lemma_df %>% 
-  count(chapter_number, lemma) %>% 
-  cast_dtm(document = chapter_number,
+newtest_idf <- newtest_lemma_df %>% 
+  count(verse_id, lemma) %>% 
+  cast_dtm(document = verse_id,
            term = lemma,
            value = n,
            weighting = tm::weightTfIdf)
@@ -185,13 +181,13 @@ matthew_idf <- matthew_lemma_df %>%
 Something we haven't done so far that is important to do now, is to interpret this output from the DTM object, so we will do that now:
 
 ```{r}
-matthew_idf
+newtest_idf
 ```
 
-The first thing to notice is the number of documents and terms. Here we have 28 documents (which in this example are just the chapters within the book) and 1,464 unique terms (words). This doesn't give us much insight but it is good to check as a quality assurance measure.
+The first thing to notice is the number of documents and terms. Here we have 7,942 documents (which in this example are the verses within the New Testament) and 4,270 unique terms (words). This doesn't give us much insight but it is good to check as a quality assurance measure.
 
-The next two lines down are the most informative for our ongoing analysis. The line <code>Non-/sparse entries: 4057/36934</code> tells us how many non-zero to zero values (term frequencies) exist in the matrix. The matrix for our 28 documents and 1,464 unique terms contains $28\times1464=40,992$ cells.
+The next two lines down are the most informative for our ongoing analysis. The line <code>Non-/sparse entries: 49688/33862652</code> tells us how many non-zero to zero values (term frequencies) exist in the matrix. The matrix for our 7,942 documents and 4,270 unique terms contains $7,942\times4,270=33912340$ cells.
 
-Within those cells, 4,057 are **non-zero** **values**, which means that word is present in that document. In the case of un-weighted DTMs, this value can be zero (the word does not appear) or an integer from 1 (denoting the number of times the word appears in that document). In this instance as we are using a TF-IDF weighting, the value will depend on how common the word is presented in the document as well as how common it is in the corpus as a whole.
+Within those cells, 49,688 are **non-zero** **values**, which means that word is present in that document. In the case of un-weighted DTMs, this value can be zero (the word does not appear) or an integer from 1 (denoting the number of times the word appears in that document). In this instance as we are using a TF-IDF weighting, the value will depend on how common the word is presented in the document as well as how common it is in the corpus as a whole.
 
-If 4,057 cells are non-zero values then this means that $40992-4057=36,934$ cells contain **zero values.** Dividing the number of zero values by the total number of cells gives us the Sparsity percentage that we see on the line below. In this instance, within our DTM, 90% of the cells contain zero values. There are a number of implications that stem from having a matrix that is considered "sparse". One key implication is that a sparse matrix can make computational operations less efficient, taking up time and computational resources by running calculations on zero values. To take this into account, we have to perform dimensionality reduction.
+If 49,688 cells are non-zero values then this means that $33,912,340-49,688=33,862,652$ cells contain **zero values.** Dividing the number of zero values by the total number of cells gives us the Sparsity percentage that we see on the line below. In this instance, within our DTM, 100% of the cells contain zero values (we know it's not exactly 100% but it is close). There are a number of implications that stem from having a matrix that is considered "sparse". One key implication is that a sparse matrix can make computational operations less efficient, taking up time and computational resources by running calculations on zero values. To take this into account, we have to perform dimensionality reduction.
