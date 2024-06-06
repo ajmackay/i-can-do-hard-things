@@ -1,3 +1,38 @@
+# Posts to do:
+## ggrepel -
+# ggrepel::geom_text_repel(data = filter(dat, sirs.class == "Neglect",
+#                                        incident.period == latest_period),
+#                          aes(col = hcp.package,
+#                              label = hcp.package),
+#                          show.legend = FALSE,
+#                          direction = "y",
+#                          nudge_x = 0.2,
+#                          fontface = "bold",
+#                          segment.linetype = "dashed") +
+#
+#   labs(col = element_blank(),
+#        x = element_blank(),
+#        y = element_blank()) +
+#
+#   theme.flourish(background.colour = "#f0e9d8") +
+#
+#
+#   theme(legend.position = "none",
+#         panel.grid.major.x = element_line(linetype = "dashed"),
+#         axis.text.x = element_text(face = "bold"))
+
+# Date Reference table and the things you can do with it
+## E.g., count how many things occurred in a period
+
+# Quickly exporting tables using officer
+# doc <- officer::read_docx() %>%
+#   body_add_flextable(industry_rate_tbl, align = "center") %>%
+#   body_add_par("\n\n") %>%
+#   body_add_flextable(sirs_rate_tbl, align = "center")
+#
+# print(doc, target = "outputs/appendix-tables.docx")
+
+
 DiagrammeR::grViz("
   digraph {
 
