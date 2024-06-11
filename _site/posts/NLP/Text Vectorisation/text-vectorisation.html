@@ -101,6 +101,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="../../../site_libs/grViz-binding-1.0.11/grViz.js"></script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -195,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>stop_words <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(stop_words, more_stop_words)</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Tokenize Data and remove stop words</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>matthew_token_df <span class="ot">&lt;-</span> matthew_df <span class="sc">%&gt;%</span> </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>newtest_token_df <span class="ot">&lt;-</span> newtest_df <span class="sc">%&gt;%</span> </span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">input =</span> text,</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">output =</span> <span class="st">"word"</span></span>
@@ -203,16 +205,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words)</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Lemmatize words</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>matthew_lemma_df <span class="ot">&lt;-</span> matthew_token_df <span class="sc">%&gt;%</span> </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>newtest_lemma_df <span class="ot">&lt;-</span> newtest_token_df <span class="sc">%&gt;%</span> </span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lemma =</span> <span class="fu">lemmatize_words</span>(word))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-b7ff2e5fdb2482823ac3" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-b7ff2e5fdb2482823ac3">{"x":{"diagram":"\n  digraph {\n  layout = dot\n  node [shape = rectangle,style=filled,fixedsize=False]\n  edge[color=grey,arrowhead=vee]\n  A0[label = \"Corpus\"]\n  A[label = \"Pre-Processed Text\"]\n  B[label = \"Text Vectorisation\", fontname = \"times-bold\"]\n  C[label = \"Bag-of-Words\"]\n  C1[label = \"Word Frequency\"]\n  C2[label = \"TF-IDF\"]\n  E[label = \"Word Embeddings\"]\n  F[label = \"Contextual Embeddings\"]\n  \n  E1[label = \"Word2Vec\"]\n  E2[label = \"GloVe\"]\n  E3[label = \"FastText\"]\n  \n  F1[label = \"ELMo\"]\n  F2[label = \"BERT\"]\n  F3[label = \"GPT\"]\n\n  A0->A\n  A->B\n  B->C\n  B->F\n  C->C1\n  C->C2\n  B->E\n  \n  E -> {E1 E2 E3}\n  \n  \n  F -> {F1 F2 F3}\n  \n\n\n  }\n   ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-7f83273c783c0803b5ea" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-7f83273c783c0803b5ea">{"x":{"diagram":"\n  digraph {\n  layout = dot\n  node [shape = rectangle,style=filled,fixedsize=False]\n  edge[color=grey,arrowhead=vee]\n  A0[label = \"Corpus\"]\n  A[label = \"Pre-Processed Text\"]\n  B[label = \"Text Vectorisation\", fontname = \"times-bold\"]\n  C[label = \"Bag-of-Words\"]\n  C1[label = \"Word Frequency\"]\n  C2[label = \"TF-IDF\"]\n  E[label = \"Word Embeddings\"]\n  F[label = \"Contextual Embeddings\"]\n  G[label = \"Dimensionality Reduction\"]\n  \n  E1[label = \"Word2Vec\"]\n  E2[label = \"GloVe\"]\n  E3[label = \"FastText\"]\n  \n  F1[label = \"ELMo\"]\n  F2[label = \"BERT\"]\n  F3[label = \"GPT\"]\n\n  A0->A\n  A->B\n  B->C\n  B->F\n  C->C1\n  C->C2\n  B->E\n  rank=same{B->G} \n  \n  \n  E -> {E1 E2 E3}\n  \n  \n  F -> {F1 F2 F3}\n  \n\n\n  }\n   ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<p>In the previous part of this series, we took a corpus of text (in this case the book of Matthew from the King James Bible) and we applied pre-processing techniques to it to extract the key words in each verse of the book.</p>
+<p>In the previous part of this series, we took a corpus of text (in this case the New Testament) and we applied pre-processing techniques to it to extract the key words in each verse of the book.</p>
 <p>In this section we will look at different ways to vectorise text to then be used in various Machine Learning models. The reason we do this is because these models can process text if it is linked with a numerical value. The way that we end up representing text will be contingent on the type of model that we want to use, which is dependent of course on the whole purpose of our NLP venture in the first place.</p>
 <section id="text-vectorisation" class="level2">
 <h2 class="anchored" data-anchor-id="text-vectorisation">Text Vectorisation</h2>
@@ -257,20 +259,15 @@ Terms      1 2 3
 </div>
 <p><code>cast_tdm()</code> has converted our counts into a matrix with the terms as rows and documents as columns and the counts (of terms within each document) as the cell value. The <code>cast_dtm()</code> function does the same thing, but with the rows and columns switched around:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>text_corpus <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">text =</span> <span class="fu">c</span>(<span class="st">"This is the first document"</span>,</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"This document is the second document"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"And this is the third one"</span>),</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">doc =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>text_dtm <span class="ot">&lt;-</span> text_corpus <span class="sc">%&gt;%</span> </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">input =</span> text,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">output =</span> <span class="st">"word"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(doc, word) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cast_dtm</span>(<span class="at">document =</span> doc,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">term =</span> word,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">value =</span> n)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(text_dtm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>text_dtm <span class="ot">&lt;-</span> text_corpus <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">input =</span> text,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">output =</span> <span class="st">"word"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(doc, word) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cast_dtm</span>(<span class="at">document =</span> doc,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">term =</span> word,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">value =</span> n)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(text_dtm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Terms
 Docs document first is the this second and one third
@@ -279,48 +276,57 @@ Docs document first is the this second and one third
    3        0     0  1   1    1      0   1   1     1</code></pre>
 </div>
 </div>
-<p>From what I have seen, the DTM format is more preferable to TDM as it may be more memory-efficient when there is a large ratio of text to documents (which would be the case with most standard text formats).</p>
-<p>In our example using the book of matthew, the matrix is too large to display. However glimpsing the <code>dtm</code> object confirms that the conversion has worked.</p>
+<p>From what I gather, the DTM format is preferable to TDM as it may be more memory-efficient when there is a large ratio of text to documents (which would be the case with most standard text formats).</p>
+<p>In our example using the book of matthew, the matrix is too large to display. However a glimpse of the <code>dtm</code> object confirms the conversion has worked.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>matthew_dtm <span class="ot">&lt;-</span> matthew_lemma_df <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(chapter_number, lemma) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cast_dtm</span>(<span class="at">document =</span> chapter_number,</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>newtest_dtm <span class="ot">&lt;-</span> newtest_lemma_df <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(verse_id, lemma) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cast_dtm</span>(<span class="at">document =</span> verse_id,</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">term =</span> lemma,</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">value =</span> n)</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(matthew_dtm) <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(newtest_dtm) <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> num [1:28, 1:1464] 2 0 0 0 0 0 0 0 0 0 ...
+<pre><code> num [1:7942, 1:4270] 1 1 0 0 0 0 0 0 0 0 ...
  - attr(*, "dimnames")=List of 2
-  ..$ Docs : chr [1:28] "1" "2" "3" "4" ...
-  ..$ Terms: chr [1:1464] "abia" "abiud" "abraham" "achaz" ...</code></pre>
+  ..$ Docs : chr [1:7942] "23146" "23147" "23148" "23149" ...
+  ..$ Terms: chr [1:4270] "abraham" "book" "christ" "david" ...</code></pre>
 </div>
 </div>
 </section>
 <section id="td-idf" class="level3">
 <h3 class="anchored" data-anchor-id="td-idf">TD-IDF</h3>
-<p>Term Document - Inverse Document Frequency is essentially the same as DTM, however instead of raw counts of document terms being used in cells, a weighted count that measures the <em>uniqueness</em> of each term in a document is used. This means that words that are common and unique to a document within a corpus are given a higher score than words that are common across all documents in a corpus. If we break down the term “TF-IDF”, we get a better understanding as to what is going on:</p>
+<p>Term Document - Inverse Document Frequency is essentially the same as DTM, however instead of raw counts of document terms presented in cells, a weighted count that measures the <em>uniqueness</em> of each term in a document is used. This means that words that are common and unique to a document within a corpus are given a higher score than words that are common across all documents in a corpus. If we break down the term “TF-IDF”, we get a better understanding as to what is going on:</p>
 <ul>
 <li><p><strong>Term Frequency (TF):</strong> Simply the same as what we calculated above. This is the frequency of a term (word) in a given document</p></li>
 <li><p><strong>Inverse Document Frequency (IDF):</strong> If <strong>document frequency</strong> assesses how common a word is across a corpus, then <strong>Inverse Document Frequency</strong> assesses how unique a word is across a corpus. Words that are common across many documents will receive a lower score, whereas rare words have a higher score</p></li>
 </ul>
 <p>TF-IDF is simply the product of the TF and IDF scores. A word that is common in one document but rare across all documents will be given a higher score than a word that is common both in one document and across the corpus.</p>
-<p>The advantage of this method, is that is captures the importance of each word within the context of the corpus. While</p>
-</section>
-<section id="term-frequency-inverse-document-frequency-tf-idf" class="level3">
-<h3 class="anchored" data-anchor-id="term-frequency-inverse-document-frequency-tf-idf">Term Frequency-Inverse Document Frequency (TF-IDF)</h3>
-</section>
-</section>
-<section id="topic-modeling" class="level2">
-<h2 class="anchored" data-anchor-id="topic-modeling">Topic Modeling</h2>
-<p>Identify themes or topics present in a collection of documents</p>
-<p><strong>Learning Outcomes:</strong></p>
-<ul>
-<li>Latent Dirichlet Allocation (LDA)</li>
-</ul>
-<section id="topic-modeling-1" class="level3">
-<h3 class="anchored" data-anchor-id="topic-modeling-1">Topic Modeling</h3>
-<p><strong>Learning Outcomes:</strong> Identify and extract the underlying themes or topics present in a corpus.</p>
+<p>The advantage of this method, is that is captures the importance of each word within the context of the corpus.</p>
+<p>To create a Document-Term Matrix with TF-IDF weights, we simply need to specify the weight to use in the <code>weighting</code> argument within <code>case_dtm()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>newtest_idf <span class="ot">&lt;-</span> newtest_lemma_df <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(verse_id, lemma) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cast_dtm</span>(<span class="at">document =</span> verse_id,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">term =</span> lemma,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">value =</span> n,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">weighting =</span> tm<span class="sc">::</span>weightTfIdf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Something we haven’t done so far that is important to do now, is to interpret this output from the DTM object, so we will do that now:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>newtest_idf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;&lt;DocumentTermMatrix (documents: 7942, terms: 4270)&gt;&gt;
+Non-/sparse entries: 49688/33862652
+Sparsity           : 100%
+Maximal term length: 16
+Weighting          : term frequency - inverse document frequency (normalized) (tf-idf)</code></pre>
+</div>
+</div>
+<p>The first thing to notice is the number of documents and terms. Here we have 7,942 documents (which in this example are the verses within the New Testament) and 4,270 unique terms (words). This doesn’t give us much insight but it is good to check as a quality assurance measure.</p>
+<p>The next two lines down are the most informative for our ongoing analysis. The line <code>Non-/sparse entries: 49688/33862652</code> tells us how many non-zero to zero values (term frequencies) exist in the matrix. The matrix for our 7,942 documents and 4,270 unique terms contains <span class="math inline">\(7,942\times4,270=33912340\)</span> cells.</p>
+<p>Within those cells, 49,688 are <strong>non-zero</strong> <strong>values</strong>, which means that word is present in that document. In the case of un-weighted DTMs, this value can be zero (the word does not appear) or an integer from 1 (denoting the number of times the word appears in that document). In this instance as we are using a TF-IDF weighting, the value will depend on how common the word is presented in the document as well as how common it is in the corpus as a whole.</p>
+<p>If 49,688 cells are non-zero values then this means that <span class="math inline">\(33,912,340-49,688=33,862,652\)</span> cells contain <strong>zero values.</strong> Dividing the number of zero values by the total number of cells gives us the Sparsity percentage that we see on the line below. In this instance, within our DTM, 100% of the cells contain zero values (we know it’s not exactly 100% but it is close). There are a number of implications that stem from having a matrix that is considered “sparse”. One key implication is that a sparse matrix can make computational operations less efficient, taking up time and computational resources by running calculations on zero values. To take this into account, we have to perform dimensionality reduction.</p>
 
 
 </section>

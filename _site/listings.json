@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/NLP/Dimensionality Reduction/dimensionality-reduction.html",
       "/posts/NLP/Text Pre-Processing/text_pre-processing.html",
       "/posts/NLP/Text Vectorisation/text-vectorisation.html",
       "/posts/NLP/Topic Modeling/topic-modeling.html",
@@ -34,6 +35,7 @@
   {
     "listing": "/archive.html",
     "items": [
+      "/posts/NLP/Dimensionality Reduction/dimensionality-reduction.html",
       "/posts/NLP/Text Pre-Processing/text_pre-processing.html",
       "/posts/NLP/Text Vectorisation/text-vectorisation.html",
       "/posts/NLP/Topic Modeling/topic-modeling.html",

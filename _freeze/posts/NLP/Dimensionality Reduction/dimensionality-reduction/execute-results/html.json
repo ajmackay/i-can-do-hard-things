@@ -1,0 +1,18 @@
+{
+  "hash": "5c55db2e33c5bcb9dfc63dc9b13b99fa",
+  "result": {
+    "markdown": "---\ntitle: \"Text Vectorisation\"\ndate: \"2024-03-26\"\ncategories: [NLP]\neditor_options: \n  chunk_output_type: inline\nfootnotes-hover: true\nexecute: \n  warning: false\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(textstem)\n\n# Input Dataset\nnewtest_df <- scriptuRs::new_testament %>% tibble()\nmatthew_df <- newtest_df %>% \n  filter(book_title == \"Matthew\")\n\n# Identify Stop Words\nmore_stop_words <- tibble(word = c(\"thou\", \"thee\", \"thy\", \"hath\", \"shalt\", \"woe\", \"ye\"), lexicon = \"Az\")\n\nstop_words <- bind_rows(stop_words, more_stop_words)\n\n# Tokenize Data and remove stop words\nmatthew_token_df <- matthew_df %>% \n  unnest_tokens(\n    input = text,\n    output = \"word\"\n  ) %>% \n  anti_join(stop_words)\n\n# Lemmatize words\nmatthew_lemma_df <- matthew_token_df %>% \n  mutate(lemma = lemmatize_words(word))\n```\n:::\n\n::: {.cell}\n::: {.cell-output-display}\n```{=html}\n<div class=\"grViz html-widget html-fill-item\" id=\"htmlwidget-01a786976e91207565fb\" style=\"width:100%;height:464px;\"></div>\n<script type=\"application/json\" data-for=\"htmlwidget-01a786976e91207565fb\">{\"x\":{\"diagram\":\"\\n  digraph {\\n  layout = dot\\n  node [shape = rectangle,style=filled,fixedsize=False]\\n  edge[color=grey,arrowhead=vee]\\n  A0[label = \\\"Corpus\\\"]\\n  A[label = \\\"Pre-Processed Text\\\"]\\n  B[label = \\\"Text Vectorisation\\\"]\\n  C[label = \\\"Dimensionality Reduction\\\", fontname = \\\"times-bold\\\"]\\n  D[label = \\\"Global Structure\\\"]\\n  D1[label = \\\"SVD/LSA\\\"]\\n  D2[label = \\\"PCA\\\"]\\n  D3[label = \\\"NMF\\\"]\\n  D4[label = \\\"Random Projections\\\"]\\n  E[label = \\\"Local Structure\\\"]\\n  E1[label = \\\"t-SNE\\\"]\\n  E2[label = \\\"UMAP\\\"]\\n  E3[label = \\\"LLE\\\"]\\n  E4[label = \\\"Isomap\\\"]\\n  E5[label = \\\"Diffusion Maps\\\"]\\n  \\n\\n  A0->A\\n  A->B\\n  rank=same{B->C} \\n  C->D\\n  C->E\\n  D->{D1 D2 D3 D4}\\n  E->{E1 E2 E3 E4 E5}\\n  \\n\\n\\n  }\\n   \",\"config\":{\"engine\":\"dot\",\"options\":null}},\"evals\":[],\"jsHooks\":[]}</script>\n```\n:::\n:::\n\n\nIn the previous section, we converted our pre-processed text data into analysis-friendly vectors using the bag-of-words TF-IDF approach.\n\nIn examining our Term-Document Matrix, we found that \\>99% of the values in the matrix contained zero values and we concluded that we should embark on dimensionality reduction before performing our topic modeling analysis.\n\n### Dimensionality Reduction\n\nThe purpose of dimensionality redution...\n\n### Preserving Global or Local Structure\n\n##### Global Structure\n\n-   SVD/LSA\n\n-   PCA\n\n-   NMF\n\n-   Truncated SVD\n\n-   Random Projections\n\n## Topic Modeling\n\nIdentify themes or topics present in a collection of documents\n\n**Learning Outcomes:**\n\n-   Latent Dirichlet Allocation (LDA)\n\n### Topic Modeling\n\n**Learning Outcomes:** Identify and extract the underlying themes or topics present in a corpus.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../../../site_libs/htmltools-fill-0.5.8.1/fill.css\" rel=\"stylesheet\" />\r\n<script src=\"../../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js\"></script>\r\n<script src=\"../../../site_libs/viz-1.8.2/viz.js\"></script>\r\n<link href=\"../../../site_libs/DiagrammeR-styles-0.2/styles.css\" rel=\"stylesheet\" />\r\n<script src=\"../../../site_libs/grViz-binding-1.0.11/grViz.js\"></script>\r\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

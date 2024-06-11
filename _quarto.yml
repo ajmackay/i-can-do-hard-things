@@ -6,10 +6,9 @@ website:
   site-url: https://amackay.netlify.app/
   description: "Data Science Blog by me... Aaron"
   navbar:
-    right:
+    left:
       - blog.qmd
-      - icon: github
-        href: https://github.com/ajmackay
+      - cv.qmd
 format:
   html:
     theme: theme.scss

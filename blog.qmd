@@ -1,5 +1,5 @@
 ---
-title: "Blog"
+title: "R Blog"
 listing:
   contents: posts/**/*.qmd
   sort: "date desc"

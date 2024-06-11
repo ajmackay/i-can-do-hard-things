@@ -1,18 +1,17 @@
 ---
-title: "Figuring it Out by Aaron"
+title: "Oh hey there..."
 image: profile.jpg
 about:
   template: solana
   links:
-    - icon: twitter
-      text: Twitter
-      href: https://twitter.com
     - icon: linkedin
       text: LinkedIn
       href: https://linkedin.com
-    - icon: github
-      text: Github
-      href: https://github.com
+    - icon: email
+      text: Email
+      href: mackay_aaron@pm.me
 ---
 
-These are some things I know about R and Data Science - test
+I'm Aaron. I work as a data analyst primarily using R. I am interested in using data and data story-telling to broaden our understanding of the world. In my spare time I ride my bicycle, practice back flips and make strange electronic music.
+
+This blog is where I post things that I have learned through my data analytics and programming journey as well as other interesting tidbits.

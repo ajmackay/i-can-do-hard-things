@@ -1,0 +1,7 @@
+---
+title: "CV"
+page-layout: full
+title-block-banner: true
+---
+
+\[CV goes here\]

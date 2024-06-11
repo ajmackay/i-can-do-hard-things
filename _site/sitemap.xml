@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://amackay.netlify.app/blog.html</loc>
-    <lastmod>2024-05-08T03:33:06.169Z</lastmod>
+    <lastmod>2024-06-11T08:11:47.645Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/index.html</loc>
-    <lastmod>2024-03-25T23:08:05.573Z</lastmod>
+    <lastmod>2024-06-11T08:12:09.626Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/ggplot-series.html</loc>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://amackay.netlify.app/archive.html</loc>
-    <lastmod>2024-05-08T03:33:07.488Z</lastmod>
+    <lastmod>2024-06-11T03:41:03.799Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/ggplot2/Quickest way to add text to ggplot/index.html</loc>
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/Group Map Named List/index.html</loc>
-    <lastmod>2024-01-19T03:39:59.814Z</lastmod>
+    <lastmod>2024-06-11T08:10:07.367Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/ggplot2/Setting up a ggplot2 theme/post.html</loc>
@@ -42,7 +42,7 @@
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/post-with-code/index.html</loc>
-    <lastmod>2024-01-10T04:03:02.473Z</lastmod>
+    <lastmod>2024-06-11T08:09:49.854Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/series/ggplot-series.html</loc>
@@ -58,7 +58,7 @@
   </url>
   <url>
     <loc>https://amackay.netlify.app/workflow-series.html</loc>
-    <lastmod>2024-03-25T23:06:47.814Z</lastmod>
+    <lastmod>2024-06-11T07:32:06.576Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/workflow/intro to series/intro.html</loc>
@@ -66,7 +66,7 @@
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/NLP/Outline/outline.html</loc>
-    <lastmod>2024-05-08T03:03:55.428Z</lastmod>
+    <lastmod>2024-06-11T03:41:49.861Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/workflow/project structure/project-structure.html</loc>
@@ -74,7 +74,7 @@
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/NLP/Text Pre-Processing/text_pre-processing.html</loc>
-    <lastmod>2024-04-26T03:04:25.613Z</lastmod>
+    <lastmod>2024-06-11T03:42:11.671Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/r-workflow/index.html</loc>
@@ -82,10 +82,18 @@
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/NLP/Text Vectorisation/text-vectorisation.html</loc>
-    <lastmod>2024-05-08T03:33:13.244Z</lastmod>
+    <lastmod>2024-06-11T03:41:12.429Z</lastmod>
   </url>
   <url>
     <loc>https://amackay.netlify.app/posts/NLP/Topic Modeling/topic-modeling.html</loc>
-    <lastmod>2024-05-08T03:33:03.931Z</lastmod>
+    <lastmod>2024-06-11T03:41:00.314Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amackay.netlify.app/posts/NLP/Dimensionality Reduction/dimensionality-reduction.html</loc>
+    <lastmod>2024-06-11T03:40:57.627Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amackay.netlify.app/cv.html</loc>
+    <lastmod>2024-06-11T08:11:56.320Z</lastmod>
   </url>
 </urlset>
