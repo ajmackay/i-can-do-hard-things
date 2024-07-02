@@ -1,0 +1,37 @@
+---
+title: "The Importance of Taking your Time with new Functions"
+author: "Aaron"
+date: "2024-07-02"
+categories: [code, analysis]
+image: "image.jpg"
+---
+
+Recently I was going over a colleagues code to do my own analysis when I came across the part of the code where a rolling average was calculated. The code seemed straightforward but used the `rollmean()` function from the **{zoo}** package, which I had not come across before. The function *seemed* straightforward. There were three arguments specified `rollmean(n, k = 4, fill = NA)` and on a quick skim over the documentation, it looked like this would calculate the rolling mean for every 4 consecutive instances of n and fill in the empty space with NA.
+
+However, before and after the code were a bunch of `group_by`s and `summarise`s , so I wasn't looking directly at the output created by `rollmean`.
+
+had the pleasure of becoming acquainted with the `rollmean()` function from the **{zoo}** package.
+
+Out of the box, the function seems straightforward. The first argument `x` is the numeric vector you want to calculate a rolling mean for, the `k` argument
+
+```{r}
+library(tibble)
+library(dplyr)
+library(zoo)
+
+dat <- tibble(x = letters[1:10],
+       y = runif(10))
+
+dat %>% 
+  mutate(r.mean = rollmean(y, k = 4, fill = NA))
+```
+
+-   withCallingHandlers()
+
+-   tryCatch()
+
+```{r}
+1 + 1
+```
+
+Photo by [JESHOOTS.COM](https://unsplash.com/@jeshoots?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://unsplash.com/photos/woman-biting-pencil-while-sitting-on-chair-in-front-of-computer-during-daytime--2vD8lIhdnw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)

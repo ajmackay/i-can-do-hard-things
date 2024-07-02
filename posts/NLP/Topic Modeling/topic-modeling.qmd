@@ -83,7 +83,7 @@ Topic modeling uses an algorithm to extract topics using the text vector that we
 
 #### Theory
 
-A useful way to understand LDA is to breakdown its name: **Latent** refers to the fact that the topics in the text are not directly observable. For anyone familiar with other "Latent" models, the concept is the same. By using connections between elements in the observable data, we can identify the latent topics that these connections refer to. For example, if a document frequently mentions "dogs" and "cats", the latent topic might be "pets".
+A useful way to understand LDA is to breakdown its name: **Latent** refers to the fact that the topics in the text are not directly observable. For anyone familiar with other "Latent" models, the concept is the same. By using connections between elements in the observable data, we can identify the latent topics that these connections refer to. For example, if a document frequently mentions "dogs" and "cats", we might conclude that the the latent topic is "pets".
 
 **Dirichlet** refers to the specific probability distribution (a dirichlet distribution) that represents the document-topic and topic-word distributions. Understanding dirichlet allocation requires a deep understanding of probability distributions and is out of the scope of this series. For now, it is enough to know that dirichlet refers to a specific probility distribution. The **Allocation** part of LDA refers to the process of allocating words to topics and topics to documents based on the distributions from the model. All of this means that the LDA process **extracts the overarching topics of a corpus and represents each document as a mixture of these topics based on their terms.**
 
@@ -91,15 +91,17 @@ A useful way to understand LDA is to breakdown its name: **Latent** refers to th
 
 The <code>LDA()</code> function from the **{topicmodels}** package will do the heavy-lifting for us in performing our LDA. `LDA()` has three key arguments that we need to specify:
 
-1.  **x:** An "DocumentTermMatrix" object with **term-frequency weighting**. This is different to the TF-IDF weighting that we calculated in the previous section. The reason for this is that LDA assumes the input data represents raw term frequencies as it performs its own normalisation and weighting during the estimation process.
+1.  **x:** A "DocumentTermMatrix" object with **term-frequency weighting**. This is different to the TF-IDF weighting that we calculated in the previous section. The reason for this is that LDA assumes the input data represents raw term frequencies as it performs its own normalisation and weighting during the estimation process.
 2.  **k:** The number of topics you want to extract. If this is not pre-defined and you want to optimise the quality of the extracted topics, you can use metrics like perplexity or coherence scores to test your model with different numbers of topics.
-3.  **control:** An (optional) seed value for the random number generator to use[^1] MORE STUFF
+3.  **control:** An (optional) seed value for the random number generator to use[^1]
 
 [^1]: The argument <code>control = list(seed = 1234)</code> sets a seed value for the random number generator used in the LDA algorithm. LDA is what is known as a <u>probabilistic model</u> and as such, some of the parameters in the algorithm rely on random numbers. By setting a seed, you ensure that your code is reproducible and consistent each time you run it.
 
+##### Creating a Term-Frequency DTM
+
 ```{r}
 #| label: DTM
-# Create a term frequenct DTM
+# Create a term frequency DTM
 newtest_tf <- newtest_lemma_df %>% 
   count(verse_id, lemma) %>% 
   cast_dtm(document = verse_id,
@@ -108,13 +110,7 @@ newtest_tf <- newtest_lemma_df %>%
            weighting = tm::weightTf)
 ```
 
-There are several steps we need to consider when performing, analysing and drawing conclusions from our LDA. Depending on your use case, you may not need to perform each step, but in general these are the steps that you will consider when performing your Topic Modeling with LDA:
-
-1.  **Identify number of topics**
-2.  **Run `LDA()`**
-3.  
-
-##### Identifying number of Topics
+##### Identifying the number of Topics using Perplexity values
 
 ```{r}
 library(ldatuning)
@@ -132,6 +128,10 @@ perplexity_values
 FindTopicsNumber_plot(perplexity_values)
 ```
 
+\[Talk about perplexity values\]
+
+##### Running your LDA
+
 ```{r}
 library(topicmodels)
 
@@ -142,8 +142,6 @@ glimpse(lda_model)
 
 terms(lda_model, 10)
 
-
-
 tidy(lda_model, matrix = "beta") %>% 
   group_by(topic) %>% 
   top_n(10, beta) %>% 
@@ -152,5 +150,3 @@ tidy(lda_model, matrix = "beta") %>%
 tidy(lda_model, matrix = "gamma")
   filter(document == 1) %>% arrange(document, -gamma)
 ```
-
-Examining
