@@ -1,5 +1,5 @@
 ---
-title: "Oh hey there..."
+title: "Everything I know about Analytics"
 image: profile.jpg
 about:
   template: solana

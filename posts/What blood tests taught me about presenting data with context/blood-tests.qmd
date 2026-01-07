@@ -1,0 +1,11 @@
+---
+title: "What Blood Tests Taught me about Presenting Data with Context"
+date: "2024-01-19"
+categories: [workflow]
+---
+
+-   Low platelets by themselves were a cause for concern
+
+-   Got many tests done, saw many other specialists
+
+-   Years later, saw a different doctor who considered the fact that I was fit and healthy and concluded that I just had below normal range of platelets but not to be concerned about.

@@ -4,7 +4,7 @@ project:
 website:
   title: "Aaron Mackay"
   site-url: https://amackay.netlify.app/
-  description: "Data Science Blog by me... Aaron"
+  description: "Everything I know about Analytics"
   navbar:
     left:
       - blog.qmd
